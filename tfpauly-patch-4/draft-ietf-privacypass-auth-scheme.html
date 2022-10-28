@@ -1512,10 +1512,13 @@ issuance protocol.<a href="#section-2.2-4.5" class="pilcrow">¶</a>
 <p id="section-2.2-5">The authenticator value in the Token structure is computed over the token_type,
 nonce, context, and token_key_id fields.<a href="#section-2.2-5" class="pilcrow">¶</a></p>
 <p id="section-2.2-6">When used for client authorization, the "PrivateToken" authentication
-scheme defines one parameter, "token", which is a quoted string containing
-the base64url-encoded Token struct. Since the length of the Token struct is not
-fixed, the base64url data MUST include padding. All unknown or unsupported
-parameters to "PrivateToken" authentication credentials MUST be ignored.<a href="#section-2.2-6" class="pilcrow">¶</a></p>
+scheme defines one parameter, "token", which contains the base64url-encoded
+Token struct. Since the length of the Token struct is not fixed, the base64url
+value MUST include padding. As an Authentication Parameter (<code>auth-param</code> from
+<span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>), the value can be either a token or a quoted-string, and might be
+required to be a quoted-string if the base64url string includes "=" characters.
+All unknown or unsupported parameters to "PrivateToken" authentication credentials
+MUST be ignored.<a href="#section-2.2-6" class="pilcrow">¶</a></p>
 <p id="section-2.2-7">Clients present this Token structure to origins in a new HTTP request using
 the Authorization header as follows:<a href="#section-2.2-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.2-8">
