@@ -13,11 +13,11 @@
 to redeem Privacy Pass tokens with an origin. It can also be used by origins to
 challenge clients to present an acceptable Privacy Pass token. 
     " name="description">
-<meta content="xml2rfc 3.15.0" name="generator">
+<meta content="xml2rfc 3.15.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-privacypass-auth-scheme-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.15.0
+  xml2rfc 3.15.1
     Python 3.10.5
     appdirs 1.4.4
     ConfigArgParse 1.5.3
@@ -376,7 +376,7 @@ dl {
 dl > dt {
   float: left;
   margin-right: 1em;
-  min-width: 20ch;
+  min-width: 12ch;
 }
 dl.dlNewline > dt {
   float: none;
@@ -1043,7 +1043,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pauly, et al.</td>
-<td class="center">Expires 20 April 2023</td>
+<td class="center">Expires 1 May 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-privacypass-auth-scheme-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-10-17" class="published">17 October 2022</time>
+<time datetime="2022-10-28" class="published">28 October 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-04-20">20 April 2023</time></dd>
+<dd class="expires"><time datetime="2023-05-01">1 May 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1105,7 +1105,7 @@ challenge clients to present an acceptable Privacy Pass token.<a href="#section-
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 April 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 May 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1212,7 +1212,7 @@ authentication or solving a CAPTCHA -- without allowing the relying party
 redeeming the client's token (the origin) to link it with issuance flow.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Different types of authenticators, using different token issuance protocols, can
 be used as Privacy Pass tokens.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document defines a common HTTP authentication scheme (<span>[<a href="#RFC7235" class="cite xref">RFC7235</a>]</span>),
+<p id="section-1-3">This document defines a common HTTP authentication scheme (<span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>),
 PrivateToken, that allows clients to redeem various kinds of Privacy Pass
 tokens.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">Clients and relying parties interact using this scheme to perform the token challenge
@@ -1281,7 +1281,7 @@ using the "Authorization" HTTP header.<a href="#section-1.1-4.3" class="pilcrow"
       <h2 id="name-http-authentication-scheme">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-http-authentication-scheme" class="section-name selfRef">HTTP Authentication Scheme</a>
       </h2>
-<p id="section-2-1">Token redemption is performed using HTTP Authentication (<span>[<a href="#RFC7235" class="cite xref">RFC7235</a>]</span>), with
+<p id="section-2-1">Token redemption is performed using HTTP Authentication (<span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>), with
 the scheme "PrivateToken". Origins challenge clients to present a token
 from a specific issuer (<a href="#challenge" class="auto internal xref">Section 2.1</a>). Once a client has received a token
 from that issuer, or already has a valid token available, it presents the
@@ -1646,7 +1646,7 @@ secure source of randomness.<a href="#section-4-7" class="pilcrow">¶</a></p>
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-authentication-scheme" class="section-name selfRef">Authentication Scheme</a>
         </h3>
 <p id="section-5.1-1">This document registers the "PrivateToken" authentication scheme in the "Hypertext
-Transfer Protocol (HTTP) Authentication Scheme Registry" established by <span>[<a href="#RFC7235" class="cite xref">RFC7235</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+Transfer Protocol (HTTP) Authentication Scheme Registry" defined in <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1-2">Authentication Scheme Name: PrivateToken<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">Pointer to specification text: <a href="#challenge-redemption" class="auto internal xref">Section 2</a> of this document<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -1683,7 +1683,7 @@ possible value is 0xFFFF = 65535.<a href="#section-5.2-1" class="pilcrow">¶</a>
 (<span>[<a href="#RFC8126" class="cite xref">RFC8126</a>], <a href="https://rfc-editor.org/rfc/rfc8126#section-4.6" class="relref">Section 4.6</a></span>). Designated experts need to ensure that the token type
 is sufficiently clearly defined to be used for both token issuance and redemption,
 and meets the common security and privacy requirements for issuance protocols defined
-in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-07#section-3.2" class="relref">Section 3.2</a> of [<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
+in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08#section-3.2" class="relref">Section 3.2</a> of [<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2-5">This registry also will also allow provisional registrations to allow for experimentation
 with protocols being developed. Designated experts review, approve, and revoke provisional
 registrations.<a href="#section-5.2-5" class="pilcrow">¶</a></p>
@@ -1922,10 +1922,6 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
         <dd>
 <span class="refAuthor">Josefsson, S.</span>, <span class="refTitle">"The Base16, Base32, and Base64 Data Encodings"</span>, <span class="seriesInfo">RFC 4648</span>, <span class="seriesInfo">DOI 10.17487/RFC4648</span>, <time datetime="2006-10" class="refDate">October 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4648">https://www.rfc-editor.org/rfc/rfc4648</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC7235">[RFC7235]</dt>
-        <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Authentication"</span>, <span class="seriesInfo">RFC 7235</span>, <span class="seriesInfo">DOI 10.17487/RFC7235</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7235">https://www.rfc-editor.org/rfc/rfc7235</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8126">[RFC8126]</dt>
         <dd>
 <span class="refAuthor">Cotton, M.</span>, <span class="refAuthor">Leiba, B.</span>, and <span class="refAuthor">T. Narten</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">BCP 26</span>, <span class="seriesInfo">RFC 8126</span>, <span class="seriesInfo">DOI 10.17487/RFC8126</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8126">https://www.rfc-editor.org/rfc/rfc8126</a>&gt;</span>. </dd>
@@ -1933,6 +1929,10 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9110">[RFC9110]</dt>
+        <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TLS13">[TLS13]</dt>
       <dd>
@@ -1947,7 +1947,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
 <dl class="references">
 <dt id="ARCHITECTURE">[ARCHITECTURE]</dt>
         <dd>
-<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Iyengar, J.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"The Privacy Pass Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-architecture-07</span>, <time datetime="2022-09-20" class="refDate">20 September 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-07">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Iyengar, J.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"The Privacy Pass Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-architecture-08</span>, <time datetime="2022-10-17" class="refDate">17 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="COOKIES">[COOKIES]</dt>
         <dd>
@@ -1955,7 +1955,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
 <dd class="break"></dd>
 <dt id="I-D.ietf-privacypass-architecture">[I-D.ietf-privacypass-architecture]</dt>
         <dd>
-<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Iyengar, J.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"The Privacy Pass Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-architecture-07</span>, <time datetime="2022-09-20" class="refDate">20 September 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-07">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Iyengar, J.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"The Privacy Pass Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-architecture-08</span>, <time datetime="2022-10-17" class="refDate">17 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ISSUANCE">[ISSUANCE]</dt>
         <dd>

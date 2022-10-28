@@ -5,13 +5,13 @@
 Network Working Group                                            S. Celi
 Internet-Draft                                               A. Davidson
 Intended status: Informational                            Brave Software
-Expires: 20 April 2023                                  A. Faz-Hernandez
+Expires: 1 May 2023                                     A. Faz-Hernandez
                                                               Cloudflare
                                                                S. Valdez
                                                               Google LLC
                                                               C. A. Wood
                                                               Cloudflare
-                                                         17 October 2022
+                                                         28 October 2022
 
 
                      Privacy Pass Issuance Protocol
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2023.
+   This Internet-Draft will expire on 1 May 2023.
 
 Copyright Notice
 
@@ -761,9 +761,9 @@ valid = (token_authenticator == Token.authenticator)
    [I-D.ietf-privacypass-architecture]
               Davidson, A., Iyengar, J., and C. A. Wood, "The Privacy
               Pass Architecture", Work in Progress, Internet-Draft,
-              draft-ietf-privacypass-architecture-07, 20 September 2022,
+              draft-ietf-privacypass-architecture-08, 17 October 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-
-              privacypass-architecture-07>.
+              privacypass-architecture-08>.
 
    [OPRF]     Davidson, A., Faz-Hernández, A., Sullivan, N., and C. A.
               Wood, "Oblivious Pseudorandom Functions (OPRFs) using
