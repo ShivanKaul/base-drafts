@@ -1351,16 +1351,22 @@ origin names, they are delimited with commas "," without any whitespace.<a href=
 <p id="section-2.1-8">When used in an authentication challenge, the "PrivateToken" scheme uses the
 following attributes:<a href="#section-2.1-8" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2.1-9.1">"challenge", which is a quoted string containing a base64url-encoded <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>
-TokenChallenge value. Since the length of the challenge is not fixed, the base64url
-data MUST include padding. This MUST be unique for every 401 HTTP response to prevent
-replay attacks. This attribute is required for all challenges.<a href="#section-2.1-9.1" class="pilcrow">¶</a>
+<li class="normal" id="section-2.1-9.1">"challenge", which contains a base64url-encoded <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span> TokenChallenge
+ value. Since the length of the challenge is not fixed, the base64url value MUST
+ include padding. As an Authentication Parameter (<code>auth-param</code> from <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>),
+ the value can be either a token or a quoted-string, and might be required to be a
+ quoted-string if the base64url string includes "=" characters. This challenge value
+ MUST be unique for every 401 HTTP response to prevent replay attacks. This attribute
+ is required for all challenges.<a href="#section-2.1-9.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.1-9.2">"token-key", which is a quoted string containing a base64url encoding of the public
-key for use with the issuance protocol indicated by the challenge. Since the length of
-the key is not fixed, the base64url data MUST include padding. This attribute MAY
-be omitted in deployments where clients are able to retrieve the issuer key using
-an out-of-band mechanism.<a href="#section-2.1-9.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.1-9.2">"token-key", which contains a base64url encoding of the public key for
+use with the issuance protocol indicated by the challenge. Since the length of
+the key is not fixed, the base64url value MUST include padding. As an
+Authentication Parameter (<code>auth-param</code> from <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>), the value can be
+either a token or a quoted-string, and might be required to be a
+quoted-string if the base64url string includes "=" characters. This attribute
+MAY be omitted in deployments where clients are able to retrieve the issuer key
+using an out-of-band mechanism.<a href="#section-2.1-9.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-2.1-9.3">"max-age", an optional attribute that consists of the number of seconds for which
 the challenge will be accepted by the origin.<a href="#section-2.1-9.3" class="pilcrow">¶</a>
@@ -1933,6 +1939,10 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9110">[RFC9110]</dt>
+        <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TLS13">[TLS13]</dt>
       <dd>
