@@ -5,10 +5,10 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                                       LIP
 Intended status: Informational                                J. Iyengar
-Expires: 24 March 2023                                            Fastly
+Expires: 1 May 2023                                               Fastly
                                                               C. A. Wood
                                                               Cloudflare
-                                                       20 September 2022
+                                                         28 October 2022
 
 
                      The Privacy Pass Architecture
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 March 2023.
+   This Internet-Draft will expire on 1 May 2023.
 
 Copyright Notice
 
@@ -116,10 +116,10 @@ Table of Contents
    directly communicating with an Issuer.  Depending on the attestation,
    Attesters can store state about a Client, such as the number of
    overall tokens issued thus far.  As an example of an issuance
-   protocol, in the original Privacy Pass protocol [PPSRV], tokens were
-   only issued to Clients that solved CAPTCHAs.  In this context, the
-   Attester attested that some client solved a CAPTCHA and the resulting
-   token produced by the Issuer was proof of this fact.
+   protocol, in the original Privacy Pass protocol [PPSRV][PPEXT],
+   tokens were only issued to Clients that solved CAPTCHAs.  In this
+   context, the Attester attested that some client solved a CAPTCHA and
+   the resulting token produced by the Issuer was proof of this fact.
 
    The redemption protocol runs between Client and Origin (server).  It
    allows Origins to challenge Clients to present one or more tokens for
@@ -149,6 +149,10 @@ Table of Contents
    protocols.  It also provides recommendations on how the architecture
    should be deployed to ensure the privacy of clients and the security
    of all participating entities.
+
+   The privacypass working group is working on [HTTP-Authentication] as
+   an instantiation of a redemption protocol and [ISSUANCE] as an
+   instantiation of the issuance protocol.
 
 2.  Terminology
 
@@ -375,8 +379,7 @@ Table of Contents
    in attestation quality is therefore a deployment-specific task.  In
    Split Attester and Issuer deployments (see Section 4.4), Issuers can
    choose to remove compromised Attesters from their trusted set until
-   the compromise is patched, without needing to modify Origin allow-
-   lists.
+   the compromise is patched.
 
 3.2.2.  Issuer Role
 
@@ -564,7 +567,11 @@ Table of Contents
 4.3.  Joint Origin and Issuer
 
    In this model, the Origin and Issuer are operated by the same entity,
-   separate from the Attester, as shown in the figure below.
+   separate from the Attester, as shown in the figure below.  The Issuer
+   accepts token requests that come from trusted Attesters.  Depending
+   on the issuance protocol, the Attester may relay these requests
+   between Client and Issuer over an authenticated channel, or trust may
+   be established in some other manner.
 
                                        +--------------------------+
          Client                        |   Issuer         Origin  |
@@ -610,7 +617,10 @@ Table of Contents
 4.4.  Split Origin, Attester, Issuer
 
    In this model, the Origin, Attester, and Issuer are all operated by
-   different entities, as shown in the figure below.
+   different entities, as shown in the figure below.  As with the joint
+   Origin and Issuer model, the Issuer accepts token requests that come
+   from trusted Attesters, and the details of that trust establishment
+   depend on the issuance protocol.
 
                                                       +-----------+
          Client                                       |   Origin  |
@@ -811,13 +821,12 @@ Table of Contents
 
    A consequence of limiting the number of participants (Attesters or
    Issuers) in Privacy Pass deployments for meaningful privacy is that
-   it forces concentrated centralization amongst those participants.{
-   {?CENTRALIZATION=I-D.nottingham-avoiding-internet-centralization}}
-   discusses several ways in which this might be mitigated.  For
-   example, a multi-stakeholder governance model could be established to
-   determine what candidate participants are fit to operate as
-   participants in a Privacy Pass deployment.  This is precisely the
-   system used to control the Web's trust model.
+   it forces concentrated centralization amongst those participants.
+   [CENTRALIZATION] discusses several ways in which this might be
+   mitigated.  For example, a multi-stakeholder governance model could
+   be established to determine what candidate participants are fit to
+   operate as participants in a Privacy Pass deployment.  This is
+   precisely the system used to control the Web's trust model.
 
    Alternatively, Privacy Pass deployments might mitigate this problem
    through implementation.  For example, rather than centralize the role
@@ -856,11 +865,14 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/rfc/rfc8446>.
-
 8.2.  Informative References
+
+   [CENTRALIZATION]
+              Nottingham, M., "Centralization, Decentralization, and
+              Internet Standards", Work in Progress, Internet-Draft,
+              draft-nottingham-avoiding-internet-centralization-05, 9
+              July 2022, <https://datatracker.ietf.org/doc/html/draft-
+              nottingham-avoiding-internet-centralization-05>.
 
    [CONSISTENCY]
               Davidson, A., Finkel, M., Thomson, M., and C. A. Wood,
@@ -873,9 +885,7 @@ Table of Contents
               C. K., Luo, Z., Mohassel, P., Raghunathan, A., Shaikh, S.,
               Sung, Y. C., and A. Zhang, "PrivateStats: De-Identified
               Authenticated Logging at Scale", January 2021,
-              <https://research.fb.com/wp-content/uploads/2021/01/
-              PrivateStats-De-Identified-Authenticated-Logging-at-
-              Scale_final.pdf>.
+              <https://research.fb.com/privatestats>.
 
    [HTTP-Authentication]
               Pauly, T., Valdez, S., and C. A. Wood, "The Privacy Pass
@@ -883,6 +893,12 @@ Table of Contents
               Draft, draft-ietf-privacypass-auth-scheme-05, 5 August
               2022, <https://datatracker.ietf.org/doc/html/draft-ietf-
               privacypass-auth-scheme-05>.
+
+   [ISSUANCE] Celi, S., Davidson, A., Faz-Hernández, A., Valdez, S., and
+              C. A. Wood, "Privacy Pass Issuance Protocol", Work in
+              Progress, Internet-Draft, draft-ietf-privacypass-protocol-
+              06, 6 July 2022, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-privacypass-protocol-06>.
 
    [KLOR20]   Kreuter, B., Lepoint, T., Orrù, M., and M. Raykova,
               "Anonymous Tokens with Private Metadata Bit", Advances in
