@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-20T02:05:48.104616+00:00",
+  "timestamp": "2022-10-30T01:59:46.196604+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -2622,6 +2622,42 @@
       "createdAt": "2022-10-14T01:06:35Z",
       "updatedAt": "2022-10-17T16:58:32Z",
       "closedAt": "2022-10-17T16:58:32Z",
+      "comments": []
+    },
+    {
+      "number": 206,
+      "id": "I_kwDODeTEy85VCI3G",
+      "title": "Add 0-RTT replay considerations",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/206",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "The security considerations of the auth scheme should mention 0-RTT specifically in its discussion of token replay. ",
+      "createdAt": "2022-10-28T03:52:06Z",
+      "updatedAt": "2022-10-28T20:46:24Z",
+      "closedAt": "2022-10-28T20:46:24Z",
+      "comments": []
+    },
+    {
+      "number": 209,
+      "id": "I_kwDODeTEy85VFF_M",
+      "title": "Padded base64 needs to quoted as an auth parameter",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/209",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Julian pointed out the following:\r\n\r\n\r\n> auth parameters are token or quoted-string. If you use base64-url\r\n> encoding with \"=\" for padding, the token variant would not work, thus\r\n> the abbreviated examples are extremely misleading (might be good to\r\n> insert complete message examples...).",
+      "createdAt": "2022-10-28T15:06:24Z",
+      "updatedAt": "2022-10-28T15:06:24Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -11834,6 +11870,312 @@
           "body": "Looks good!",
           "createdAt": "2022-10-19T14:57:34Z",
           "updatedAt": "2022-10-19T14:57:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 207,
+      "id": "PR_kwDODeTEy85Bv50s",
+      "title": "Add discussion about 0-RTT replays",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/207",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #206.",
+      "createdAt": "2022-10-28T12:56:53Z",
+      "updatedAt": "2022-10-28T20:46:23Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/0rtt",
+      "headRefOid": "5c48072b73e3443384b7e082449ed7bfc0bfc094",
+      "closedAt": "2022-10-28T20:46:23Z",
+      "mergedAt": "2022-10-28T20:46:23Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "4390a70daac145f4fb59c054bbd691954206aed7"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85FJ32v",
+          "commit": {
+            "abbreviatedOid": "5c48072"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-28T15:01:58Z",
+          "updatedAt": "2022-10-28T15:01:58Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 208,
+      "id": "PR_kwDODeTEy85Bwd2X",
+      "title": "Update HTTP references to 9110",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/208",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "",
+      "createdAt": "2022-10-28T15:05:14Z",
+      "updatedAt": "2022-10-28T15:15:26Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-3",
+      "headRefOid": "f76183ff1d084ee349b7e8a9be88c1aacdf60f30",
+      "closedAt": "2022-10-28T15:15:26Z",
+      "mergedAt": "2022-10-28T15:15:26Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "b4b3b463f10a4e77b995585fb0a1a376d12c9671"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85FJ8js",
+          "commit": {
+            "abbreviatedOid": "f76183f"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-28T15:15:22Z",
+          "updatedAt": "2022-10-28T15:15:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 210,
+      "id": "PR_kwDODeTEy85BwfGm",
+      "title": "Add quotes around base64 auth params",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/210",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Closes #209",
+      "createdAt": "2022-10-28T15:09:54Z",
+      "updatedAt": "2022-10-29T05:53:24Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-4",
+      "headRefOid": "7deda1d302e55d1dd9a0865f726bc7cbbc0ad650",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Is this a breaking change? In my reference implementation, I grab everything after the `token=` prefix because that's what the spec said to do.",
+          "createdAt": "2022-10-28T15:19:27Z",
+          "updatedAt": "2022-10-28T15:19:27Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "body": "> Is this a breaking change? In my reference implementation, I grab everything after the `token=` prefix because that's what the spec said to do.\r\n\r\nWell, it would break implementations that do not use the generic HTTP auth grammar for challenges/credentials.",
+          "createdAt": "2022-10-28T15:23:02Z",
+          "updatedAt": "2022-10-28T15:23:02Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Well, it would break implementations that do not use the generic HTTP auth grammar for challenges/credentials.\r\n\r\nSo, yes, this is a breaking change then =) Before this change the spec did not specify the grammar precisely.",
+          "createdAt": "2022-10-28T15:24:52Z",
+          "updatedAt": "2022-10-28T15:24:52Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "body": "> > Well, it would break implementations that do not use the generic HTTP auth grammar for challenges/credentials.\r\n> \r\n> So, yes, this is a breaking change then =) Before this change the spec did not specify the grammar precisely.\r\n\r\nWell; it said that it is an HTTP auth scheme, and that, by definition, causes specific syntax requirements.\r\n\r\nOK, let me rephrase this... The spec should say that is uses \"#auth-param\" (as per https://greenbytes.de/tech/webdav/rfc9110.html#auth.params) and then maybe clarify that this may require quoting base64 encoded fields.",
+          "createdAt": "2022-10-28T15:26:55Z",
+          "updatedAt": "2022-10-28T15:31:11Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Right, if the padding isn't needed, then it would be OK to not quote. Our implementation does handle receiving the quotes or not correctly, so the spec was out of alignment there. This is the right change to make.",
+          "createdAt": "2022-10-28T15:41:57Z",
+          "updatedAt": "2022-10-28T15:41:57Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@reschke RFC9110 has this to say about `auth-param` encoding:\r\n\r\n> Parameter values can be expressed either as \"token\" or as \"quoted-string\" ([Section 5.6](https://greenbytes.de/tech/webdav/rfc9110.html#fields.components)). Authentication scheme definitions need to accept both notations, both for senders and recipients, to allow recipients to use generic parsing components regardless of the authentication scheme.\r\n\r\nMost of the implementations of authentication headers I've seen do _not_ use any sort of generic parsing components. Now, I've not seen very many, but enough to conclude that people just reimplement whatever parsing is needed based on the auth type. Do you know how common it is for implementations to rely on these \"generic\" parsing functions? \r\n\r\nI ask because this change means that servers that were not previously supporting both types of auth-param encodings need to, and there doesn't seem to be any good reason to do so rather than, say, just pick one. If a server is using these generic parsing functions, then they can continue using them. Otherwise, if they're rolling parsing fresh, they have a simpler task at hand.\r\n\r\nAssuming clients can also easily pick one option, what's the technical reason for wanting to support both?",
+          "createdAt": "2022-10-28T16:23:43Z",
+          "updatedAt": "2022-10-28T16:23:43Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "body": "Apart of not having to rewrite parsers for each scheme?\r\n\r\n*Clients* need to use a generic parser, because WWW-A can hold a list of different challenges. To get to the point where a client can pick the \"best\" challenge, it actually has to consume the full combined field value, and the only way to do that is a parser that is scheme-agnostic. ",
+          "createdAt": "2022-10-28T17:24:22Z",
+          "updatedAt": "2022-10-28T17:24:22Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@reschke let me know if this text looks good now",
+          "createdAt": "2022-10-28T20:46:05Z",
+          "updatedAt": "2022-10-28T20:46:05Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85FKAM8",
+          "commit": {
+            "abbreviatedOid": "3c39d2d"
+          },
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Are there cases where the base64url encoding would not include padding? In these cases quoting is not necessary. The spec should require senders to send conforming messages (thus use quoting when needed), but also require recipients to parse token/quoted-string as defined in the base spec (note that for quoted-string that implies unescaping certain sequences).",
+          "createdAt": "2022-10-28T15:25:41Z",
+          "updatedAt": "2022-10-28T15:25:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy85FK1p8",
+          "commit": {
+            "abbreviatedOid": "3c39d2d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-28T18:29:55Z",
+          "updatedAt": "2022-10-28T18:32:26Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n- \"challenge\", which contains a base64url-encoded {{!RFC4648}} TokenChallenge\r\n value. Since the length of the challenge is not fixed, the base64url value MUST\r\n include padding. As an Authentication Parameter (`auth-param` from {{!RFC9110}}),\r\n the value can be either a token or a quoted-string, and might be required to be a\r\n quoted-string if the base64url string includes \"=\" characters. This challenge value\r\n MUST be unique for every 401 HTTP response to prevent replay attacks. This attribute\r\n is required for all challenges.\r\n```",
+              "createdAt": "2022-10-28T18:29:55Z",
+              "updatedAt": "2022-10-28T20:43:14Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\n- \"token-key\", which contains a base64url encoding of the public key for\r\nuse with the issuance protocol indicated by the challenge. Since the length of\r\nthe key is not fixed, the base64url value MUST include padding. As an\r\nAuthentication Parameter (`auth-param` from {{!RFC9110}}), the value can be\r\neither a token or a quoted-string, and might be required to be a\r\nquoted-string if the base64url string includes \"=\" characters. This attribute\r\nMAY be omitted in deployments where clients are able to retrieve the issuer key\r\nusing an out-of-band mechanism.\r\n```",
+              "createdAt": "2022-10-28T18:31:37Z",
+              "updatedAt": "2022-10-28T20:43:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85FLLNd",
+          "commit": {
+            "abbreviatedOid": "3c39d2d"
+          },
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-28T19:21:56Z",
+          "updatedAt": "2022-10-28T19:21:56Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "\"depending on if the base64url string includes \"=\" characters\" -> \"and might be required to ba quoted-string if....\"",
+              "createdAt": "2022-10-28T19:21:56Z",
+              "updatedAt": "2022-10-28T19:21:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85FLLqU",
+          "commit": {
+            "abbreviatedOid": "3c39d2d"
+          },
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-28T19:22:51Z",
+          "updatedAt": "2022-10-28T19:22:52Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "(same type of comment here; the recipient needs to handle both formats no matter what)",
+              "createdAt": "2022-10-28T19:22:52Z",
+              "updatedAt": "2022-10-28T19:22:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85FLt0m",
+          "commit": {
+            "abbreviatedOid": "3c39d2d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-28T20:43:17Z",
+          "updatedAt": "2022-10-28T20:43:17Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "Updated!",
+              "createdAt": "2022-10-28T20:43:17Z",
+              "updatedAt": "2022-10-28T20:43:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85FLuOo",
+          "commit": {
+            "abbreviatedOid": "3c39d2d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-28T20:44:01Z",
+          "updatedAt": "2022-10-28T20:44:01Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Updated!",
+              "createdAt": "2022-10-28T20:44:01Z",
+              "updatedAt": "2022-10-28T20:44:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85FMlFf",
+          "commit": {
+            "abbreviatedOid": "7deda1d"
+          },
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-29T05:53:24Z",
+          "updatedAt": "2022-10-29T05:53:24Z",
           "comments": []
         }
       ]
