@@ -5,13 +5,13 @@
 Network Working Group                                            S. Celi
 Internet-Draft                                               A. Davidson
 Intended status: Informational                            Brave Software
-Expires: 1 May 2023                                     A. Faz-Hernandez
+Expires: 4 May 2023                                     A. Faz-Hernandez
                                                               Cloudflare
                                                                S. Valdez
                                                               Google LLC
                                                               C. A. Wood
                                                               Cloudflare
-                                                         28 October 2022
+                                                         31 October 2022
 
 
                      Privacy Pass Issuance Protocol
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 May 2023.
+   This Internet-Draft will expire on 4 May 2023.
 
 Copyright Notice
 
@@ -78,8 +78,8 @@ Table of Contents
    8.  IANA considerations
      8.1.  Token Type
      8.2.  Media Types
-       8.2.1.  "message/token-request" media type
-       8.2.2.  "message/token-response" media type
+       8.2.1.  "application/private-token-request" media type
+       8.2.2.  "application/private-token-response" media type
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -292,16 +292,16 @@ Table of Contents
    The values token_input and blinded_element are stored locally and
    used later as described in Section 5.3.  The Client then generates an
    HTTP POST request to send to the Issuer, with the TokenRequest as the
-   body.  The media type for this request is "message/token-request".
-   An example request is shown below.
+   body.  The media type for this request is "application/private-token-
+   request".  An example request is shown below.
 
    :method = POST
    :scheme = https
    :authority = issuer.example.net
    :path = /example-token-request
-   accept = message/token-response
+   accept = application/private-token-response
    cache-control = no-cache, no-store
-   content-type = message/token-request
+   content-type = application/private-token-request
    content-length = <Length of TokenRequest>
 
    <Bytes containing the TokenRequest>
@@ -351,11 +351,11 @@ Table of Contents
       where Ns is as defined in [OPRF], Section 4.
 
    The Issuer generates an HTTP response with status code 200 whose body
-   consists of TokenResponse, with the content type set as "message/
-   token-response".
+   consists of TokenResponse, with the content type set as "application/
+   private-token-response".
 
    :status = 200
-   content-type = message/token-response
+   content-type = application/private-token-response
    content-length = <Length of TokenResponse>
 
    <Bytes containing the TokenResponse>
@@ -494,16 +494,16 @@ valid = (token_authenticator == Token.authenticator)
 
    The Client then generates an HTTP POST request to send to the Issuer,
    with the TokenRequest as the body.  The media type for this request
-   is "message/token-request".  An example request is shown below, where
-   Nk = 512.
+   is "application/private-token-request".  An example request is shown
+   below, where Nk = 512.
 
    :method = POST
    :scheme = https
    :authority = issuer.example.net
    :path = /example-token-request
-   accept = message/token-response
+   accept = application/private-token-response
    cache-control = no-cache, no-store
-   content-type = message/token-request
+   content-type = application/private-token-request
    content-length = <Length of TokenRequest>
 
    <Bytes containing the TokenRequest>
@@ -539,10 +539,10 @@ valid = (token_authenticator == Token.authenticator)
    The rsabssa_blind_sign function is defined in [BLINDRSA],
    Section 5.1.2.. The Issuer generates an HTTP response with status
    code 200 whose body consists of TokenResponse, with the content type
-   set as "message/token-response".
+   set as "application/private-token-response".
 
    :status = 200
-   content-type = message/token-response
+   content-type = application/private-token-response
    content-length = <Length of TokenResponse>
 
    <Bytes containing the TokenResponse>
@@ -648,17 +648,17 @@ valid = (token_authenticator == Token.authenticator)
    This specification defines the following protocol messages, along
    with their corresponding media types:
 
-   *  TokenRequest: "message/token-request"
+   *  TokenRequest: "application/private-token-request"
 
-   *  TokenResponse: "message/token-response"
+   *  TokenResponse: "application/private-token-response"
 
    The definition for each media type is in the following subsections.
 
-8.2.1.  "message/token-request" media type
+8.2.1.  "application/private-token-request" media type
 
-   Type name:  message
+   Type name:  application
 
-   Subtype name:  token-request
+   Subtype name:  private-token-request
 
    Required parameters:  N/A
 
@@ -695,11 +695,11 @@ valid = (token_authenticator == Token.authenticator)
 
    Change controller:  IESG
 
-8.2.2.  "message/token-response" media type
+8.2.2.  "application/private-token-response" media type
 
-   Type name:  message
+   Type name:  application
 
-   Subtype name:  access-token-response
+   Subtype name:  private-token-response
 
    Required parameters:  N/A
 
