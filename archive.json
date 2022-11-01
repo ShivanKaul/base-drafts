@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-30T01:59:46.196604+00:00",
+  "timestamp": "2022-11-01T02:05:42.219307+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -2559,7 +2559,7 @@
       "id": "I_kwDODeTEy85Twzlq",
       "title": "Slightly more specific content types?",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/199",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "quartzjer",
       "authorAssociation": "NONE",
       "assignees": [
@@ -2568,8 +2568,8 @@
       "labels": [],
       "body": "I see in the current draft that they register `message/token-request` and `message/token-response`.\r\n\r\nSince \"token\" is a very broad term, I'm wondering if something slightly more specific to Privacy Pass such as `message/privacy-token-request` and `message/privacy-token-response` might be reasonable?",
       "createdAt": "2022-10-11T22:30:11Z",
-      "updatedAt": "2022-10-19T14:53:19Z",
-      "closedAt": null,
+      "updatedAt": "2022-10-31T19:40:27Z",
+      "closedAt": "2022-10-31T19:40:27Z",
       "comments": [
         {
           "author": "tfpauly",
@@ -11839,24 +11839,26 @@
       "id": "PR_kwDODeTEy85BHdqk",
       "title": "Update media types to align with the authentication scheme",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/205",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #199.\r\n\r\nI also moved from the message namespace to the application namespace. The difference is helpfully summarized [in this DAP issue](https://github.com/ietf-wg-ppm/draft-ietf-ppm-dap/issues/264).",
       "createdAt": "2022-10-19T14:52:35Z",
-      "updatedAt": "2022-10-19T14:57:34Z",
+      "updatedAt": "2022-10-31T19:40:26Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/align-media-types",
       "headRefOid": "a7e998d6285643f269ae8035ae92cfc210cb4b90",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-10-31T19:40:25Z",
+      "mergedAt": "2022-10-31T19:40:25Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "26a6ae414a727da56f21374082866d3270deccc7"
+      },
       "comments": [],
       "reviews": [
         {
@@ -11976,7 +11978,7 @@
       ],
       "body": "Closes #209",
       "createdAt": "2022-10-28T15:09:54Z",
-      "updatedAt": "2022-10-29T05:53:24Z",
+      "updatedAt": "2022-10-31T19:58:10Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
@@ -12043,6 +12045,13 @@
           "body": "@reschke let me know if this text looks good now",
           "createdAt": "2022-10-28T20:46:05Z",
           "updatedAt": "2022-10-28T20:46:05Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Approved and taking my concerns to this [lovely new draft](https://github.com/httpwg/http-extensions/issues/2280)!",
+          "createdAt": "2022-10-31T19:58:09Z",
+          "updatedAt": "2022-10-31T19:58:09Z"
         }
       ],
       "reviews": [
@@ -12176,6 +12185,32 @@
           "body": "",
           "createdAt": "2022-10-29T05:53:24Z",
           "updatedAt": "2022-10-29T05:53:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy85FPsYd",
+          "commit": {
+            "abbreviatedOid": "7deda1d"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "This aligns with RFC9110, but I still don't really like it. In particular, I see no technical reason why we can't be more restrictive here, given that this is a new auth type and, based on my experience, most servers will have to roll new parsing logic for it anyway.\r\n\r\nTo be concrete, why can't we simply say that clients MUST use auth-params when encoding auth-params to the server? And similarly for parameters from server to client? @reschke, thoughts?",
+          "createdAt": "2022-10-31T11:46:15Z",
+          "updatedAt": "2022-10-31T11:46:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy85FSaOJ",
+          "commit": {
+            "abbreviatedOid": "7deda1d"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-31T19:49:18Z",
+          "updatedAt": "2022-10-31T19:49:18Z",
           "comments": []
         }
       ]
