@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-11-01T02:05:42.219307+00:00",
+  "timestamp": "2022-11-06T01:44:42.596740+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -2647,7 +2647,7 @@
       "id": "I_kwDODeTEy85VFF_M",
       "title": "Padded base64 needs to quoted as an auth parameter",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/209",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tfpauly",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -2656,8 +2656,8 @@
       ],
       "body": "Julian pointed out the following:\r\n\r\n\r\n> auth parameters are token or quoted-string. If you use base64-url\r\n> encoding with \"=\" for padding, the token variant would not work, thus\r\n> the abbreviated examples are extremely misleading (might be good to\r\n> insert complete message examples...).",
       "createdAt": "2022-10-28T15:06:24Z",
-      "updatedAt": "2022-10-28T15:06:24Z",
-      "closedAt": null,
+      "updatedAt": "2022-11-03T16:25:27Z",
+      "closedAt": "2022-11-03T16:25:27Z",
       "comments": []
     }
   ],
@@ -11967,7 +11967,7 @@
       "id": "PR_kwDODeTEy85BwfGm",
       "title": "Add quotes around base64 auth params",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/210",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tfpauly",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -11978,17 +11978,19 @@
       ],
       "body": "Closes #209",
       "createdAt": "2022-10-28T15:09:54Z",
-      "updatedAt": "2022-10-31T19:58:10Z",
+      "updatedAt": "2022-11-03T16:25:26Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "tfpauly-patch-4",
       "headRefOid": "7deda1d302e55d1dd9a0865f726bc7cbbc0ad650",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-11-03T16:25:26Z",
+      "mergedAt": "2022-11-03T16:25:26Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "6c14107e62da8b1fe3bd5936b44ecb9c9e783bf5"
+      },
       "comments": [
         {
           "author": "chris-wood",
