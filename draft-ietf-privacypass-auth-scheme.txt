@@ -5,10 +5,10 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                Apple Inc.
 Intended status: Standards Track                               S. Valdez
-Expires: 7 May 2023                                           Google LLC
+Expires: 26 May 2023                                          Google LLC
                                                               C. A. Wood
                                                               Cloudflare
-                                                         3 November 2022
+                                                        22 November 2022
 
 
               The Privacy Pass HTTP Authentication Scheme
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 May 2023.
+   This Internet-Draft will expire on 26 May 2023.
 
 Copyright Notice
 
@@ -376,7 +376,7 @@ Table of Contents
       by the token_type and corresponding issuance protocol.
 
    The authenticator value in the Token structure is computed over the
-   token_type, nonce, context, and token_key_id fields.
+   token_type, nonce, challenge_digest, and token_key_id fields.
 
    When used for client authorization, the "PrivateToken" authentication
    scheme defines one parameter, "token", which contains the base64url-
@@ -700,11 +700,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-
               privacypass-architecture-08>.
 
-   [COOKIES]  Chen, L., Englehardt, S., West, M., and J. Wilander,
-              "Cookies: HTTP State Management Mechanism", Work in
-              Progress, Internet-Draft, draft-ietf-httpbis-rfc6265bis-
-              10, 24 April 2022, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-httpbis-rfc6265bis-10>.
+   [COOKIES]  Bingler, S., West, M., and J. Wilander, "Cookies: HTTP
+              State Management Mechanism", Work in Progress, Internet-
+              Draft, draft-ietf-httpbis-rfc6265bis-11, 7 November 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              rfc6265bis-11>.
 
    [I-D.ietf-privacypass-architecture]
               Davidson, A., Iyengar, J., and C. A. Wood, "The Privacy
@@ -713,7 +713,7 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-
               privacypass-architecture-08>.
 
-   [ISSUANCE] Celi, S., Davidson, A., Faz-Hernández, A., Valdez, S., and
+   [ISSUANCE] Celi, S., Davidson, A., Faz-Hernandez, A., Valdez, S., and
               C. A. Wood, "Privacy Pass Issuance Protocol", Work in
               Progress, Internet-Draft, draft-ietf-privacypass-protocol-
               06, 6 July 2022, <https://datatracker.ietf.org/doc/html/
