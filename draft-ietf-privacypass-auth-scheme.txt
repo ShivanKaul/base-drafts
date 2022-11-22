@@ -459,7 +459,8 @@ Table of Contents
    challenges with some non-zero probability.  Likewise, origins SHOULD
    randomly choose to not challenge clients for tokens with some non-
    zero probability.  Moreover, origins SHOULD include random token
-   types in token challenges with some non-zero probability.
+   types, from the Reserved list of "greased" types (defined in
+   Section 5.2), with some non-zero probability.
 
 4.  Security Considerations
 
