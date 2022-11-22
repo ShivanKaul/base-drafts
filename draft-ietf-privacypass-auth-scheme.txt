@@ -134,12 +134,13 @@ Table of Contents
       protocol to create a signed token.
 
    *  Token challenge: A requirement for tokens sent from an origin to a
-      client, using the "WWW-Authenticate" HTTP header.  This challenge
-      is bound to a specific token issuer and issuance protocol, and may
-      be additionally bound to a specific context or origin name.
+      client, using the "WWW-Authenticate" HTTP header field.  This
+      challenge is bound to a specific token issuer and issuance
+      protocol, and may be additionally bound to a specific context or
+      origin name.
 
    *  Token redemption: An action by which a client presents a token to
-      an origin, using the "Authorization" HTTP header.
+      an origin, using the "Authorization" HTTP header field.
 
 2.  HTTP Authentication Scheme
 
@@ -152,9 +153,9 @@ Table of Contents
 2.1.  Token Challenge
 
    Origins send a token challenge to clients in an "WWW-Authenticate"
-   header with the "PrivateToken" scheme.  This challenge includes a
-   TokenChallenge message, along with information about what keys to use
-   when requesting a token from the issuer.
+   header field with the "PrivateToken" scheme.  This challenge includes
+   a TokenChallenge message, along with information about what keys to
+   use when requesting a token from the issuer.
 
    Origins that support this authentication scheme need to handle the
    following tasks:
@@ -239,10 +240,11 @@ Table of Contents
    Clients can ignore the challenge if the token-key is invalid or
    otherwise untrusted.
 
-   The header MAY also include the standard "realm" attribute, if
+   The header field MAY also include the standard "realm" attribute, if
    desired.  Issuance protocols MAY require other attributes.
 
-   As an example, the WWW-Authenticate header could look like this:
+   As an example, the WWW-Authenticate header field could look like
+   this:
 
    WWW-Authenticate: PrivateToken challenge="abc...", token-key="123..."
 
@@ -261,11 +263,11 @@ Table of Contents
 
    Caching and pre-fetching of tokens is discussed in Section 2.1.2.
 
-   Note that it is possible for the WWW-Authenticate header to include
-   multiple challenges.  This allows the origin to indicate support for
-   different token types, issuers, or to include multiple redemption
-   contexts.  For example, the WWW-Authenticate header could look like
-   this:
+   Note that it is possible for the WWW-Authenticate header field to
+   include multiple challenges.  This allows the origin to indicate
+   support for different token types, issuers, or to include multiple
+   redemption contexts.  For example, the WWW-Authenticate header field
+   could look like this:
 
   WWW-Authenticate: PrivateToken challenge="abc...", token-key="123...",
   PrivateToken challenge="def...", token-key="234..."
@@ -389,7 +391,7 @@ Table of Contents
    credentials MUST be ignored.
 
    Clients present this Token structure to origins in a new HTTP request
-   using the Authorization header as follows:
+   using the Authorization header field as follows:
 
    Authorization: PrivateToken token="abc..."
 
