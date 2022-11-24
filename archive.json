@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-11-06T01:44:42.596740+00:00",
+  "timestamp": "2022-11-24T01:25:48.269031+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -2659,6 +2659,158 @@
       "updatedAt": "2022-11-03T16:25:27Z",
       "closedAt": "2022-11-03T16:25:27Z",
       "comments": []
+    },
+    {
+      "number": 211,
+      "id": "I_kwDODeTEy85XCtKY",
+      "title": "Auth scheme: Clunky intro",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/211",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme",
+        "editorial"
+      ],
+      "body": "From editor copy today:\r\n\r\n> Privacy Pass tokens are unlinkable authenticators that can be used to anonymously authorize a client (see [[ARCHITECTURE](https://ietf-wg-privacypass.github.io/base-drafts/draft-ietf-privacypass-auth-scheme.html#ARCHITECTURE)]). A client possessing such a token is able to prove that it was able to get a token issued by a token issuer -- based on some check from a token issuer, such as authentication or solving a CAPTCHA -- without allowing the relying party redeeming the client's token (the origin) to link it with issuance flow.\r\n\r\nI found this intro to be a bit clunky. I didn't read the ARCHITECTURE reference yet but don't think that should be a prerequisite to comprehension of the first para. How about something like\r\n\r\n> Privacy Pass tokens are unlinkable authenticators that can be used to anonymously authorize a client (see [[ARCHITECTURE](https://ietf-wg-privacypass.github.io/base-drafts/draft-ietf-privacypass-auth-scheme.html#ARCHITECTURE)]). Token issuance by a token issuer can be based on checks such as authentication or solving a CAPTCHA. A client possessing such a token can prove that it was able to get the token issued, without allowing the relying party that redeems the client's token (the origin) to link it with the issuance flow.",
+      "createdAt": "2022-11-22T18:04:45Z",
+      "updatedAt": "2022-11-23T00:37:27Z",
+      "closedAt": "2022-11-23T00:37:27Z",
+      "comments": []
+    },
+    {
+      "number": 212,
+      "id": "I_kwDODeTEy85XCuSo",
+      "title": "Auth scheme: use a more specific reference to HTTP Authentication",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/212",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme",
+        "editorial"
+      ],
+      "body": "Previously, the document linked to RFC 7235, whose whole purpose was to discuss HTTP Authentication. Now you kjust link to RFC 9110, which all of HTTP semantics. Suggest that you link to Section 11 of RFC 9110 to make the reader's life easier.",
+      "createdAt": "2022-11-22T18:08:09Z",
+      "updatedAt": "2022-11-22T23:33:27Z",
+      "closedAt": "2022-11-22T23:33:27Z",
+      "comments": []
+    },
+    {
+      "number": 213,
+      "id": "I_kwDODeTEy85XCwUg",
+      "title": "Auth scheme: s/header/header field",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/213",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme",
+        "editorial"
+      ],
+      "body": "There's a few cases of `header` rather than `header field`, which is puts you on HTTP's naughty list",
+      "createdAt": "2022-11-22T18:13:55Z",
+      "updatedAt": "2022-11-22T23:31:49Z",
+      "closedAt": "2022-11-22T23:31:49Z",
+      "comments": []
+    },
+    {
+      "number": 214,
+      "id": "I_kwDODeTEy85XC2Bl",
+      "title": "Auth scheme: unclear sender requirements for origin_info contents",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/214",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Spec says:\r\n\r\n> Select the origin information to include in the TokenChallenge. This can be empty to allow fully cross-origin tokens, a single origin name that matches the origin itself, or a list of origin names containing the origin.\r\n\r\nand \r\n\r\n> \"origin_info\" is an optional string containing one or more origin names, which allows a token to be scoped to a specific set of origins. The string is prefixed with a 2-octet integer indicating the length, in network byte order. If empty, any non-origin-specific token can be redeemed. If the string contains multiple origin names, they are delimited with commas \",\" without any whitespace.\r\n\r\nand also\r\n\r\n> If the TokenChallenge contains a non-empty origin_info field, the client MUST validate that the name of the origin that issued the authentication challenge is included in the list of origin names.\r\n\r\nThe sender requirements are implicit. I'm guessing that the sender also MUST include it's own origin name in the non-empty case. Should the spec just state that?\r\n",
+      "createdAt": "2022-11-22T18:29:13Z",
+      "updatedAt": "2022-11-22T23:36:26Z",
+      "closedAt": "2022-11-22T23:36:26Z",
+      "comments": []
+    },
+    {
+      "number": 215,
+      "id": "I_kwDODeTEy85XC31m",
+      "title": "Auth scheme: what happens when client validation fails?",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/215",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "For example,\r\n\r\n> If the TokenChallenge contains a non-empty origin_info field, the client MUST validate that the name of the origin that issued the authentication challenge is included in the list of origin names.\r\n\r\nWhat happens if validation fails here, is the challenge simply ignored or should the client do something more drastic?",
+      "createdAt": "2022-11-22T18:33:22Z",
+      "updatedAt": "2022-11-22T23:36:14Z",
+      "closedAt": "2022-11-22T23:36:14Z",
+      "comments": []
+    },
+    {
+      "number": 216,
+      "id": "I_kwDODeTEy85XC7Lk",
+      "title": "Auth scheme: Token redemption typo bug",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/216",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Suspect the prose is not aligned with the `Token` structure, it says\r\n\r\n> The authenticator value in the Token structure is computed over the token_type, nonce, context, and token_key_id fields.\r\n\r\nbut there is no `context` field in `Token`.",
+      "createdAt": "2022-11-22T18:41:00Z",
+      "updatedAt": "2022-11-22T22:30:36Z",
+      "closedAt": "2022-11-22T22:30:36Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yup, that should say `challenge_digest`. The name changed.",
+          "createdAt": "2022-11-22T22:25:01Z",
+          "updatedAt": "2022-11-22T22:25:01Z"
+        }
+      ]
+    },
+    {
+      "number": 217,
+      "id": "I_kwDODeTEy85XC_Mi",
+      "title": "Auth scheme: GREASEing",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/217",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "The spec recommends some greasing in Section 3\r\n\r\n> To mitigate the risk of deployments becoming dependent on tokens, clients and servers SHOULD grease their behavior unless explicitly configured not to. In particular, clients SHOULD ignore token challenges with some non-zero probability. Likewise, origins SHOULD randomly choose to not challenge clients for tokens with some non-zero probability. Moreover, origins SHOULD include random token types in token challenges with some non-zero probability.\r\n\r\nIn section 5.2, several token types are reserved as greased values. \r\n\r\nIs the expectation really that origins pick \"random\" token types, or with non-zero global probability across clients, randomly pick from the set of reserved token types?\r\n\r\n",
+      "createdAt": "2022-11-22T18:55:39Z",
+      "updatedAt": "2022-11-22T22:31:21Z",
+      "closedAt": "2022-11-22T22:31:21Z",
+      "comments": [
+        {
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This should probably read from the list of reserved GREASE values, rather than random token types (the latter can cause interop issues).",
+          "createdAt": "2022-11-22T19:01:07Z",
+          "updatedAt": "2022-11-22T19:01:07Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "NONE",
+          "body": "Yeah, that sounds good, ",
+          "createdAt": "2022-11-22T19:24:09Z",
+          "updatedAt": "2022-11-22T19:24:09Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -12213,6 +12365,328 @@
           "body": "",
           "createdAt": "2022-10-31T19:49:18Z",
           "updatedAt": "2022-10-31T19:49:18Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 218,
+      "id": "PR_kwDODeTEy85DgF-e",
+      "title": "Fix struct field reference in section 2.2",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/218",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Closes #216",
+      "createdAt": "2022-11-22T22:26:41Z",
+      "updatedAt": "2022-11-22T22:30:36Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "6c14107e62da8b1fe3bd5936b44ecb9c9e783bf5",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-5",
+      "headRefOid": "609c983a2364ed3a6d4c35920e3756b080a59971",
+      "closedAt": "2022-11-22T22:30:35Z",
+      "mergedAt": "2022-11-22T22:30:35Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "065f0030dca6d5c35f2d123b2b06158a76b8e63d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-vu9",
+          "commit": {
+            "abbreviatedOid": "609c983"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T22:30:31Z",
+          "updatedAt": "2022-11-22T22:30:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 219,
+      "id": "PR_kwDODeTEy85DgGso",
+      "title": "Clarify use of greased token types",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/219",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Closes #217",
+      "createdAt": "2022-11-22T22:29:33Z",
+      "updatedAt": "2022-11-22T22:31:20Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "6c14107e62da8b1fe3bd5936b44ecb9c9e783bf5",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-6",
+      "headRefOid": "df0445c849d4331b99089fc01d418c2d8be8d862",
+      "closedAt": "2022-11-22T22:31:20Z",
+      "mergedAt": "2022-11-22T22:31:20Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "039a561f980d5ba10700e57db88448c1fb81ff52"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-vtR",
+          "commit": {
+            "abbreviatedOid": "df0445c"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T22:30:24Z",
+          "updatedAt": "2022-11-22T22:30:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy85G-v4f",
+          "commit": {
+            "abbreviatedOid": "df0445c"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T22:31:15Z",
+          "updatedAt": "2022-11-22T22:31:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 220,
+      "id": "PR_kwDODeTEy85DgHuN",
+      "title": "Header -> header field",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/220",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "This one goes out to all the HTTP pedants out there =)\r\n\r\nCloses #213",
+      "createdAt": "2022-11-22T22:34:03Z",
+      "updatedAt": "2022-11-22T23:31:49Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "039a561f980d5ba10700e57db88448c1fb81ff52",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-7",
+      "headRefOid": "a625a57a27a671dae0e37211011532a28fe11492",
+      "closedAt": "2022-11-22T23:31:49Z",
+      "mergedAt": "2022-11-22T23:31:48Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "9531c1e6312544ad388b7f886383d75a420f2213"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-6DR",
+          "commit": {
+            "abbreviatedOid": "a625a57"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T23:31:16Z",
+          "updatedAt": "2022-11-22T23:31:16Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 221,
+      "id": "PR_kwDODeTEy85DgIaa",
+      "title": "Add sections for RFC 9110",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/221",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme",
+        "editorial"
+      ],
+      "body": "Closes #212",
+      "createdAt": "2022-11-22T22:37:32Z",
+      "updatedAt": "2022-11-22T23:33:26Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "039a561f980d5ba10700e57db88448c1fb81ff52",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-8",
+      "headRefOid": "05178cb841b5319b370446a68febc1eb374e5908",
+      "closedAt": "2022-11-22T23:33:26Z",
+      "mergedAt": "2022-11-22T23:33:26Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "bec2bc7e09626c3a84e967dacd234481d672785a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-6UY",
+          "commit": {
+            "abbreviatedOid": "05178cb"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T23:33:05Z",
+          "updatedAt": "2022-11-22T23:33:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 222,
+      "id": "PR_kwDODeTEy85DgJJ7",
+      "title": "Clarify origin's behavior in constructing origin_info",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/222",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Closes #214",
+      "createdAt": "2022-11-22T22:41:18Z",
+      "updatedAt": "2022-11-22T23:36:25Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "039a561f980d5ba10700e57db88448c1fb81ff52",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-9",
+      "headRefOid": "003354732f8d13c922afc9e99b5b409f1807a1cf",
+      "closedAt": "2022-11-22T23:36:25Z",
+      "mergedAt": "2022-11-22T23:36:25Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "c671a6da94452eeccaa9b004571219f8341634d0"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-6m4",
+          "commit": {
+            "abbreviatedOid": "0033547"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T23:35:15Z",
+          "updatedAt": "2022-11-22T23:35:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 223,
+      "id": "PR_kwDODeTEy85DgJwp",
+      "title": "Clarify client behavior on failed validation",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/223",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Closes #215",
+      "createdAt": "2022-11-22T22:44:24Z",
+      "updatedAt": "2022-11-22T23:36:14Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "039a561f980d5ba10700e57db88448c1fb81ff52",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-10",
+      "headRefOid": "ea09e780761fc70b024f6ff3ae620f72da1057f5",
+      "closedAt": "2022-11-22T23:36:13Z",
+      "mergedAt": "2022-11-22T23:36:13Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "16abec84c40741ff8e62323e174cbd5307fcb864"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-6ur",
+          "commit": {
+            "abbreviatedOid": "ea09e78"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T23:36:08Z",
+          "updatedAt": "2022-11-22T23:36:08Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 224,
+      "id": "PR_kwDODeTEy85DgKrs",
+      "title": "Reword intro",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/224",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "auth-scheme"
+      ],
+      "body": "Closes #211",
+      "createdAt": "2022-11-22T22:49:07Z",
+      "updatedAt": "2022-11-23T00:37:26Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "039a561f980d5ba10700e57db88448c1fb81ff52",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "tfpauly-patch-11",
+      "headRefOid": "17f2693dfab7d5196730a4f40e09a040c893718b",
+      "closedAt": "2022-11-23T00:37:25Z",
+      "mergedAt": "2022-11-23T00:37:25Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "b4817b15b6e09844316f46c71569e9961ed77f0c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85G-7BH",
+          "commit": {
+            "abbreviatedOid": "17f2693"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-22T23:38:12Z",
+          "updatedAt": "2022-11-22T23:38:12Z",
           "comments": []
         }
       ]
