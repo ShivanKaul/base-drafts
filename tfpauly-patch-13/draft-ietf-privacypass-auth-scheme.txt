@@ -404,14 +404,13 @@ Table of Contents
    and the hash of a valid TokenChallenge.  For context-bound tokens,
    origins store or reconstruct the contexts of previous TokenChallenge
    structures in order to validate the token.  A TokenChallenge MAY be
-   bound to a specific TLS connection from a client, but origins can
-   also accept tokens for valid challenges in new sessions.  Origins
-   SHOULD implement some form of double-spend prevention that prevents a
-   token with the same nonce from being redeemed twice.  This prevents
-   clients from "replaying" tokens for previous challenges.  For
-   context-bound tokens, this double-spend prevention can require no
-   state or minimal state, since the context can be used to verify token
-   uniqueness.
+   bound to a specific TLS session with a client, but origins can also
+   accept tokens for valid challenges in new sessions.  Origins SHOULD
+   implement some form of double-spend prevention that prevents a token
+   with the same nonce from being redeemed twice.  This prevents clients
+   from "replaying" tokens for previous challenges.  For context-bound
+   tokens, this double-spend prevention can require no state or minimal
+   state, since the context can be used to verify token uniqueness.
 
    If a client is unable to fetch a token, it MUST react to the
    challenge as if it could not produce a valid Authorization response.
