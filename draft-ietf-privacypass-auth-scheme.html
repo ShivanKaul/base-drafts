@@ -1352,14 +1352,14 @@ the list.<a href="#section-2.1-7.4" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-2.1-8">When used in an authentication challenge, the "PrivateToken" scheme uses the
-following attributes:<a href="#section-2.1-8" class="pilcrow">¶</a></p>
+following parameters:<a href="#section-2.1-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.1-9.1">"challenge", which contains a base64url-encoded <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span> TokenChallenge
  value. Since the length of the challenge is not fixed, the base64url value MUST
  include padding. As an Authentication Parameter (<code>auth-param</code> from <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>], <a href="https://rfc-editor.org/rfc/rfc9110#section-11.2" class="relref">Section 11.2</a></span>),
  the value can be either a token or a quoted-string, and might be required to be a
  quoted-string if the base64url string includes "=" characters. This challenge value
- MUST be unique for every 401 HTTP response to prevent replay attacks. This attribute
+ MUST be unique for every 401 HTTP response to prevent replay attacks. This parameter
  is required for all challenges.<a href="#section-2.1-9.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-2.1-9.2">"token-key", which contains a base64url encoding of the public key for
@@ -1367,17 +1367,18 @@ use with the issuance protocol indicated by the challenge. Since the length of
 the key is not fixed, the base64url value MUST include padding. As an
 Authentication Parameter (<code>auth-param</code> from <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>], <a href="https://rfc-editor.org/rfc/rfc9110#section-11.2" class="relref">Section 11.2</a></span>), the value can be
 either a token or a quoted-string, and might be required to be a
-quoted-string if the base64url string includes "=" characters. This attribute
+quoted-string if the base64url string includes "=" characters. This parameter
 MAY be omitted in deployments where clients are able to retrieve the issuer key
 using an out-of-band mechanism.<a href="#section-2.1-9.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.1-9.3">"max-age", an optional attribute that consists of the number of seconds for which
+          <li class="normal" id="section-2.1-9.3">"max-age", an optional parameter that consists of the number of seconds for which
 the challenge will be accepted by the origin.<a href="#section-2.1-9.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-2.1-10">Clients can ignore the challenge if the token-key is invalid or otherwise untrusted.<a href="#section-2.1-10" class="pilcrow">¶</a></p>
-<p id="section-2.1-11">The header field MAY also include the standard "realm" attribute, if desired. Issuance protocols
-MAY require other attributes.<a href="#section-2.1-11" class="pilcrow">¶</a></p>
+<p id="section-2.1-11">The header field MAY also include the standard "realm" parameter, if desired. Issuance
+protocols MAY require other parameters. Clients SHOULD ignore unknown parameters
+in challenges, except if otherwise specified by issuance protocols.<a href="#section-2.1-11" class="pilcrow">¶</a></p>
 <p id="section-2.1-12">As an example, the WWW-Authenticate header field could look like this:<a href="#section-2.1-12" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1-13">
 <pre>
@@ -1635,7 +1636,7 @@ same time. For example, if a client is challenged for a token with a unique cont
 time T1 and then subsequently obtains a token at time T2, a colluding issuer and origin can
 link this to the same client if T2 is unique to the client. This linkability is less
 feasible as the number of issuance events at time T2 increases. Depending on the "max-age"
-token challenge attribute, clients MAY try to augment the time between getting challenged
+token challenge parameter, clients MAY try to augment the time between getting challenged
 then redeeming a token so as to make this sort of linkability more difficult. For more
 discussion on correlation risks between token issuance and redemption, see
 <span>[<a href="#I-D.ietf-privacypass-architecture" class="cite xref">I-D.ietf-privacypass-architecture</a>]</span>.<a href="#section-4-4" class="pilcrow">¶</a></p>
