@@ -1289,10 +1289,9 @@ from that issuer, or already has a valid token available, it presents the
 token to the origin (<a href="#redemption" class="auto internal xref">Section 2.2</a>).<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">Unlike many authentication schemes in which a client will present the same credentials
 across multiple requests, tokens used with the "PrivateToken" scheme are
-single-use credentials, and are not reused. Specific token issuance protocols MAY
-define behavior that allows token reuse, however. In deployment scenarios where origins send
-token challenges to request tokens, origins ought to expect at most one request containing
-a token from the client in reaction to a particular challenge.<a href="#section-2-2" class="pilcrow">¶</a></p>
+single-use credentials, and are not reused. Spending the same token value more than once allows the origin to link multiple transactions to the same client. In deployment scenarios
+where origins send token challenges to request tokens, origins ought to expect at most one
+request containing a token from the client in reaction to a particular challenge.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="challenge">
 <section id="section-2.1">
         <h3 id="name-token-challenge">
