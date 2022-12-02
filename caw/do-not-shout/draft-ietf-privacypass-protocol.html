@@ -1262,17 +1262,15 @@ metadata during the issuance flow.<a href="#section-abstract-1" class="pilcrow">
 <p id="section-1-1">The Privacy Pass protocol provides a privacy-preserving authorization
 mechanism. In essence, the protocol allows clients to provide
 cryptographic tokens that prove nothing other than that they have been
-created by a given server in the past <span>[<a href="#I-D.ietf-privacypass-architecture" class="cite xref">I-D.ietf-privacypass-architecture</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+created by a given server in the past <span>[<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document describes the issuance protocol for Privacy Pass. It specifies
 two variants: one that is privately verifiable based on the oblivious
 pseudorandom function from <span>[<a href="#OPRF" class="cite xref">OPRF</a>]</span>, and one that is
 publicly verifiable based on the blind RSA signature scheme
 <span>[<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document does not cover the architectural framework required for
-running and maintaining the Privacy Pass protocol in the Internet
-setting. In addition, it does not cover the choices that are necessary
-for ensuring that client privacy leaks do not occur. Both of these
-considerations are covered in <span>[<a href="#I-D.ietf-privacypass-architecture" class="cite xref">I-D.ietf-privacypass-architecture</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">This document does not cover the Privacy Pass architecture, including
+choices that are necessary for ensuring that client privacy leaks.
+Both of these considerations are covered in <span>[<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1866,7 +1864,7 @@ based on the VOPRF defined in <span>[<a href="#OPRF" class="cite xref">OPRF</a>]
 <span>[<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>]</span>. All security considerations described in the VOPRF and blind RSA
 documents also apply in the Privacy Pass use-case. Considerations related to
 broader privacy and security concerns in a multi-Client and multi-Issuer
-setting are deferred to the Architecture document <span>[<a href="#I-D.ietf-privacypass-architecture" class="cite xref">I-D.ietf-privacypass-architecture</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+setting are deferred to the Architecture document <span>[<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">Beyond these considerations, it is worth highlighting the fact that Client TokenRequest
 messages contain truncated token key IDs. This is done to minimize the chance that an Issuer
 can use distinct keys for targeting specific users. Since the key ID is truncated
@@ -2183,10 +2181,6 @@ corresponding media types:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refTitle">"The Privacy Pass HTTP Authentication Scheme"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00">https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.ietf-privacypass-architecture">[I-D.ietf-privacypass-architecture]</dt>
-        <dd>
-<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Iyengar, J.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"The Privacy Pass Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-architecture-08</span>, <time datetime="2022-10-17" class="refDate">17 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="OPRF">[OPRF]</dt>
         <dd>
 <span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Faz-Hernandez, A.</span>, <span class="refAuthor">Sullivan, N.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Oblivious Pseudorandom Functions (OPRFs) using Prime-Order Groups"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-voprf-16</span>, <time datetime="2022-11-28" class="refDate">28 November 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-16">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-16</a>&gt;</span>. </dd>
@@ -2210,6 +2204,10 @@ corresponding media types:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="ARCHITECTURE">[ARCHITECTURE]</dt>
+        <dd>
+<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Iyengar, J.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"The Privacy Pass Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-architecture-08</span>, <time datetime="2022-10-17" class="refDate">17 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-architecture-08</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="CONSISTENCY">[CONSISTENCY]</dt>
         <dd>
 <span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Finkel, M.</span>, <span class="refAuthor">Thomson, M.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Key Consistency and Discovery"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wood-key-consistency-03</span>, <time datetime="2022-08-17" class="refDate">17 August 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03">https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03</a>&gt;</span>. </dd>
