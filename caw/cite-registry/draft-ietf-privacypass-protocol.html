@@ -1399,17 +1399,17 @@ interactive or non-interactive, and per-origin or cross-origin.<a href="#section
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-issuance-protocol-for-priva" class="section-name selfRef">Issuance Protocol for Privately Verifiable Tokens</a>
       </h2>
 <p id="section-5-1">The Privacy Pass issuance protocol is a two message protocol that takes
-as input a challenge from the redemption protocol and produces a token,
-as shown in the figure below.<a href="#section-5-1" class="pilcrow">¶</a></p>
+as input a TokenChallenge from the redemption protocol <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>], <a href="https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00#section-2.1" class="relref">Section 2.1</a></span>
+and produces a Token <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>], <a href="https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00#section-2.2" class="relref">Section 2.2</a></span>, as shown in the figure below.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5-2">
 <pre>
-   Origin          Client                   Issuer
-                    (pkI)                 (skI, pkI)
-                  +------------------------------------\
-  Challenge   ----&gt; TokenRequest -------------&gt;        |
-                  |                       (evaluate)   |
-    Token    &lt;----+     &lt;--------------- TokenResponse |
-                  \------------------------------------/
+   Origin            Client                   Issuer
+                      (pkI)                 (skI, pkI)
+                   +------------------------------------\
+TokenChallenge ----&gt; TokenRequest -------------&gt;        |
+                   |                       (evaluate)   |
+     Token    &lt;----+     &lt;--------------- TokenResponse |
+                   \------------------------------------/
 </pre><a href="#section-5-2" class="pilcrow">¶</a>
 </div>
 <p id="section-5-3">Issuers provide a Private and Public Key, denoted skI and pkI, respectively,
