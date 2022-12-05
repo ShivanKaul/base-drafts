@@ -574,7 +574,9 @@ valid = (token_authenticator == Token.authenticator)
    To verify a token, a verifier checks that Token.authenticator is a
    valid signature over the remainder of the token input as described
    below.  The function RSASSA-PSS-VERIFY is defined in Section 8.1.2 of
-   [RFC8017].
+   [RFC8017], using SHA-384 as the Hash function, MGF1 with SHA-384 as
+   the PSS mask generation function (MGF), and a 48-byte salt length
+   (sLen).
 
 token_authenticator_input =
   concat(Token.token_type,

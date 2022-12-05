@@ -1821,7 +1821,9 @@ If the rsabssa_finalize function fails, the Client aborts the protocol.<a href="
         </h3>
 <p id="section-6.4-1">To verify a token, a verifier checks that Token.authenticator is a valid
 signature over the remainder of the token input as described below. The
-function <code>RSASSA-PSS-VERIFY</code> is defined in <span><a href="https://rfc-editor.org/rfc/rfc8017#section-8.1.2" class="relref">Section 8.1.2</a> of [<a href="#RFC8017" class="cite xref">RFC8017</a>]</span>.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+function <code>RSASSA-PSS-VERIFY</code> is defined in <span><a href="https://rfc-editor.org/rfc/rfc8017#section-8.1.2" class="relref">Section 8.1.2</a> of [<a href="#RFC8017" class="cite xref">RFC8017</a>]</span>,
+using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
+generation function (MGF), and a 48-byte salt length (sLen).<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.4-2">
 <pre>
 token_authenticator_input =
