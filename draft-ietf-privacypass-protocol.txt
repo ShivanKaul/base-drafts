@@ -94,20 +94,16 @@ Table of Contents
    The Privacy Pass protocol provides a privacy-preserving authorization
    mechanism.  In essence, the protocol allows clients to provide
    cryptographic tokens that prove nothing other than that they have
-   been created by a given server in the past
-   [I-D.ietf-privacypass-architecture].
+   been created by a given server in the past [ARCHITECTURE].
 
    This document describes the issuance protocol for Privacy Pass.  It
    specifies two variants: one that is privately verifiable based on the
    oblivious pseudorandom function from [OPRF], and one that is publicly
    verifiable based on the blind RSA signature scheme [BLINDRSA].
 
-   This document DOES NOT cover the architectural framework required for
-   running and maintaining the Privacy Pass protocol in the Internet
-   setting.  In addition, it DOES NOT cover the choices that are
-   necessary for ensuring that client privacy leaks do not occur.  Both
-   of these considerations are covered in
-   [I-D.ietf-privacypass-architecture].
+   This document does not cover the Privacy Pass architecture, including
+   choices that are necessary for ensuring that client privacy leaks.
+   This information is covered in [ARCHITECTURE].
 
 2.  Terminology
 
@@ -609,7 +605,7 @@ valid = (token_authenticator == Token.authenticator)
    blind RSA documents also apply in the Privacy Pass use-case.
    Considerations related to broader privacy and security concerns in a
    multi-Client and multi-Issuer setting are deferred to the
-   Architecture document [I-D.ietf-privacypass-architecture].
+   Architecture document [ARCHITECTURE].
 
    Beyond these considerations, it is worth highlighting the fact that
    Client TokenRequest messages contain truncated token key IDs.  This
@@ -758,13 +754,6 @@ valid = (token_authenticator == Token.authenticator)
               <https://datatracker.ietf.org/doc/html/draft-pauly-
               privacypass-auth-scheme-00>.
 
-   [I-D.ietf-privacypass-architecture]
-              Davidson, A., Iyengar, J., and C. A. Wood, "The Privacy
-              Pass Architecture", Work in Progress, Internet-Draft,
-              draft-ietf-privacypass-architecture-08, 17 October 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-
-              privacypass-architecture-08>.
-
    [OPRF]     Davidson, A., Faz-Hernandez, A., Sullivan, N., and C. A.
               Wood, "Oblivious Pseudorandom Functions (OPRFs) using
               Prime-Order Groups", Work in Progress, Internet-Draft,
@@ -787,6 +776,13 @@ valid = (token_authenticator == Token.authenticator)
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 9.2.  Informative References
+
+   [ARCHITECTURE]
+              Davidson, A., Iyengar, J., and C. A. Wood, "The Privacy
+              Pass Architecture", Work in Progress, Internet-Draft,
+              draft-ietf-privacypass-architecture-08, 17 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-
+              privacypass-architecture-08>.
 
    [CONSISTENCY]
               Davidson, A., Finkel, M., Thomson, M., and C. A. Wood,
