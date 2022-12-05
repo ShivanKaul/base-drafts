@@ -1622,15 +1622,15 @@ valid = (token_authenticator == Token.authenticator)
 <a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-issuer-configuration" class="section-name selfRef">Issuer Configuration</a>
         </h3>
 <p id="section-5.5-1">Issuers are configured with Private and Public Key pairs, each denoted skI and
-pkI, respectively, used to produce tokens. Each key pair MUST be generated as
-follows:<a href="#section-5.5-1" class="pilcrow">¶</a></p>
+pkI, respectively, used to produce tokens. A RECOMMENDED method for generating
+key pairs is as follows:<a href="#section-5.5-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.5-2">
 <pre>
 seed = random(Ns)
 (skI, pkI) = DeriveKeyPair(seed, "PrivacyPass")
 </pre><a href="#section-5.5-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5.5-3">The key identifier for this specific key pair, denoted <code>token_key_id</code>, is computed
+<p id="section-5.5-3">The key identifier for a public key <code>pkI</code>, denoted <code>token_key_id</code>, is computed
 as follows:<a href="#section-5.5-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.5-4">
 <pre>
