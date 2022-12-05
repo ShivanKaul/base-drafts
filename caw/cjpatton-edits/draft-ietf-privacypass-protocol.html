@@ -1297,7 +1297,8 @@ tokens.<a href="#section-2-3.4" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-2-4">We assume that all protocol messages are encoded into raw byte format
-before being sent across the wire.<a href="#section-2-4" class="pilcrow">¶</a></p>
+before being sent across the wire.
+Unless otherwise specified, all constants are in network byte order.<a href="#section-2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="setup">
@@ -1462,7 +1463,7 @@ for use when finalizing the issuance protocol to produce a token
 <div class="alignLeft art-text artwork" id="section-5.1-8">
 <pre>
 struct {
-   uint16_t token_type = 0x0001;
+   uint16_t token_type = 0x0001; /* Token type VOPRF(P-384, SHA-384) */
    uint8_t truncated_token_key_id;
    uint8_t blinded_msg[Ne];
 } TokenRequest;
@@ -1801,7 +1802,7 @@ If this succeeds, the Client then constructs a Token as described in
 <div class="alignLeft art-text artwork" id="section-6.3-4">
 <pre>
 struct {
-    uint16_t token_type = 0x0002
+    uint16_t token_type = 0x0002; /* Token type Blind RSA (2048-bit) */
     uint8_t nonce[32];
     uint8_t challenge_digest[32];
     uint8_t token_key_id[32];

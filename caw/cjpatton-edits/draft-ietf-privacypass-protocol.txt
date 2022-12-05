@@ -131,7 +131,8 @@ Table of Contents
       verifying tokens.
 
    We assume that all protocol messages are encoded into raw byte format
-   before being sent across the wire.
+   before being sent across the wire.  Unless otherwise specified, all
+   constants are in network byte order.
 
 3.  Configuration
 
@@ -271,11 +272,11 @@ Table of Contents
 
    The Client then creates a TokenRequest structured as follows:
 
-   struct {
-      uint16_t token_type = 0x0001;
-      uint8_t truncated_token_key_id;
-      uint8_t blinded_msg[Ne];
-   } TokenRequest;
+ struct {
+    uint16_t token_type = 0x0001; /* Token type VOPRF(P-384, SHA-384) */
+    uint8_t truncated_token_key_id;
+    uint8_t blinded_msg[Ne];
+ } TokenRequest;
 
    The structure fields are defined as follows:
 
@@ -559,13 +560,13 @@ valid = (token_authenticator == Token.authenticator)
    Section 5.1.3.. If this succeeds, the Client then constructs a Token
    as described in [HTTP-Authentication] as follows:
 
-   struct {
-       uint16_t token_type = 0x0002
-       uint8_t nonce[32];
-       uint8_t challenge_digest[32];
-       uint8_t token_key_id[32];
-       uint8_t authenticator[Nk];
-   } Token;
+ struct {
+     uint16_t token_type = 0x0002; /* Token type Blind RSA (2048-bit) */
+     uint8_t nonce[32];
+     uint8_t challenge_digest[32];
+     uint8_t token_key_id[32];
+     uint8_t authenticator[Nk];
+ } Token;
 
    The Token.nonce value is that which was sampled in Section 5.1.  If
    the rsabssa_finalize function fails, the Client aborts the protocol.
