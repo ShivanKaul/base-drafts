@@ -5,10 +5,10 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                Apple Inc.
 Intended status: Standards Track                               S. Valdez
-Expires: 5 June 2023                                          Google LLC
+Expires: 8 June 2023                                          Google LLC
                                                               C. A. Wood
                                                               Cloudflare
-                                                         2 December 2022
+                                                         5 December 2022
 
 
               The Privacy Pass HTTP Authentication Scheme
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 June 2023.
+   This Internet-Draft will expire on 8 June 2023.
 
 Copyright Notice
 
@@ -89,23 +89,32 @@ Table of Contents
    Section 11), PrivateToken, that allows clients to redeem various
    kinds of Privacy Pass tokens.
 
-   Clients and relying parties interact using this scheme to perform the
-   token challenge and token redemption flow.  Clients use a token
-   issuance protocol to actually fetch tokens to redeem.
+   Clients and relying parties (origins) interact using this scheme to
+   perform the token challenge and token redemption flow.  In
+   particular, origins challenge clients for a token with an HTTP
+   Authentication challenge (using the WWW-Authenticate response header
+   field).  Clients then respond to that challenge with an HTTP
+   authentiation response (using the Authorization request header
+   field).  Clients produce an authentication response based on the
+   origin's token challenge by running the token issuance protocol
+   [ISSUANCE].  The act of presenting a token in an Authorization
+   request header is referred to as token redemption.  This interaction
+   between client and origin is shown below.
 
-    Client                             Relying Party (Origin)
+   Client                             Relying Party (Origin)
 
-       <------------------------------ Challenge \
-                                                 |
-   +----------------------------------\          |
-   |                                  |          |
-   |  Issuance Protocol               |          |
-   |                                  |          |
-   +----------------------------------/          |
-                                                 |
-        Redemption -------------------------- >  /
+      <---------------------- WWW-Authenticate  \  Challenge
+                              (TokenChallenge)  |
+  +----------------------------------\          |
+  |                                  |          |
+  |  Issuance Protocol               |          |
+  |                                  |          |
+  +----------------------------------/          |
+                                                |
+    Authorization --------------------------->  /  Response (redemption)
+       (Token)
 
-                  Figure 1: Token Architectural Components
+                 Figure 1: Token Architectural Components
 
    In addition to working with different token issuance protocols, this
    scheme optionally supports use of tokens that are associated with
@@ -141,7 +150,8 @@ Table of Contents
       origin name.
 
    *  Token redemption: An action by which a client presents a token to
-      an origin, using the "Authorization" HTTP header field.
+      an origin in an HTTP request, using the "Authorization" HTTP
+      header field.
 
 2.  HTTP Authentication Scheme
 
@@ -151,6 +161,15 @@ Table of Contents
    Once a client has received a token from that issuer, or already has a
    valid token available, it presents the token to the origin
    (Section 2.2).
+
+   Unlike many authentication schemes in which a client will present the
+   same credentials across multiple requests, tokens used with the
+   "PrivateToken" scheme are single-use credentials, and are not reused.
+   Spending the same token value more than once allows the origin to
+   link multiple transactions to the same client.  In deployment
+   scenarios where origins send token challenges to request tokens,
+   origins ought to expect at most one request containing a token from
+   the client in reaction to a particular challenge.
 
 2.1.  Token Challenge
 
