@@ -1266,7 +1266,7 @@ metadata during the issuance flow.<a href="#section-abstract-1" class="pilcrow">
 mechanism. In essence, the protocol allows clients to provide
 cryptographic tokens that prove nothing other than that they have been
 created by a given server in the past <span>[<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">This document describes the issuance protocol for Privacy Pass. It specifies
+<p id="section-1-2">This document describes the issuance protocol for Privacy Pass built on <span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>. It specifies
 two variants: one that is privately verifiable based on the oblivious
 pseudorandom function from <span>[<a href="#OPRF" class="cite xref">OPRF</a>]</span>, and one that is
 publicly verifiable based on the blind RSA signature scheme
@@ -1318,7 +1318,7 @@ This parameter uses resource media type "text/plain".<a href="#section-3-2.1" cl
 </li>
       </ol>
 <p id="section-3-3">The Issuer parameters can be obtained from an Issuer via a directory object, which is a JSON
-object whose values are other JSON objects and URLs for the parameters.<a href="#section-3-3" class="pilcrow">¶</a></p>
+object <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>], <a href="https://rfc-editor.org/rfc/rfc8259#section-4" class="relref">Section 4</a></span> whose values are other JSON values <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>], <a href="https://rfc-editor.org/rfc/rfc8259#section-3" class="relref">Section 3</a></span> for the parameters.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1330,11 +1330,13 @@ object whose values are other JSON objects and URLs for the parameters.<a href="
         <tbody>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">issuer-request-uri</td>
-            <td class="text-left" rowspan="1" colspan="1">Issuer Request URI resource URL as a JSON string</td>
+            <td class="text-left" rowspan="1" colspan="1">Issuer Request URI resource percent-encoded URL string, represented as a JSON string <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>], <a href="https://rfc-editor.org/rfc/rfc8259#section-7" class="relref">Section 7</a></span>
+</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">token-keys</td>
-            <td class="text-left" rowspan="1" colspan="1">List of Issuer Public Key values, each as JSON objects</td>
+            <td class="text-left" rowspan="1" colspan="1">List of Issuer Public Key values, each represented as JSON objects <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>], <a href="https://rfc-editor.org/rfc/rfc8259#section-4" class="relref">Section 4</a></span>
+</td>
           </tr>
         </tbody>
       </table>
@@ -1350,11 +1352,13 @@ object whose values are other JSON objects and URLs for the parameters.<a href="
         <tbody>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">token-type</td>
-            <td class="text-left" rowspan="1" colspan="1">Integer value of the Token Type, as defined in <a href="#token-type" class="auto internal xref">Section 8.2</a>, as a JSON number</td>
+            <td class="text-left" rowspan="1" colspan="1">Integer value of the Token Type, as defined in <a href="#token-type" class="auto internal xref">Section 8.2</a>, represented as a JSON number <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>], <a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a></span>
+</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">token-key</td>
-            <td class="text-left" rowspan="1" colspan="1">The base64url encoding of the public key for use with the issuance protocol, including padding, as a JSON string</td>
+            <td class="text-left" rowspan="1" colspan="1">The base64url encoding of the public key for use with the issuance protocol, including padding, represented as a JSON string <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>], <a href="https://rfc-editor.org/rfc/rfc8259#section-7" class="relref">Section 7</a></span>
+</td>
           </tr>
         </tbody>
       </table>
@@ -1362,7 +1366,7 @@ object whose values are other JSON objects and URLs for the parameters.<a href="
 support key rotation. In this case, Issuers indicate preference for which
 token key to use based on the order of keys in the list, with preference
 given to keys earlier in the list.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">Altogether, the Issuer's JSON directory could look like:<a href="#section-3-8" class="pilcrow">¶</a></p>
+<p id="section-3-8">Altogether, the Issuer's directory could look like:<a href="#section-3-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-9">
 <pre>
  {
@@ -1484,7 +1488,7 @@ struct {
         </ul>
 <p id="section-5.1-11">The values <code>token_input</code> and <code>blinded_element</code> are stored locally and used later
 as described in <a href="#private-finalize" class="auto internal xref">Section 5.3</a>. The Client then generates an HTTP POST request
-to send to the Issuer, with the TokenRequest as the body. The media type for
+to send to the Issuer, with the TokenRequest as the content. The media type for
 this request is "application/private-token-request". An example request is shown below.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.1-12">
 <pre>
@@ -1550,7 +1554,7 @@ computed as <code>concat(SerializeScalar(proof[0]), SerializeScalar(proof[1]))</
 where Ns is as defined in <span>[<a href="#OPRF" class="cite xref">OPRF</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-voprf-16#section-4" class="relref">Section 4</a></span>.<a href="#section-5.2-6.2" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-5.2-7">The Issuer generates an HTTP response with status code 200 whose body consists
+<p id="section-5.2-7">The Issuer generates an HTTP response with status code 200 whose content consists
 of TokenResponse, with the content type set as "application/private-token-response".<a href="#section-5.2-7" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.2-8">
 <pre>
@@ -1569,7 +1573,7 @@ content-length = &lt;Length of TokenResponse&gt;
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-finalization" class="section-name selfRef">Finalization</a>
         </h3>
 <p id="section-5.3-1">Upon receipt, the Client handles the response and, if successful, deserializes
-the body values TokenResponse.evaluate_msg and TokenResponse.evaluate_proof,
+the content values TokenResponse.evaluate_msg and TokenResponse.evaluate_proof,
 yielding <code>evaluated_element</code> and <code>proof</code>. If deserialization of either value fails,
 the Client aborts the protocol. Otherwise, the Client processes the response as
 follows:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
@@ -1722,7 +1726,7 @@ struct {
 </li>
         </ul>
 <p id="section-6.1-8">The Client then generates an HTTP POST request to send to the Issuer,
-with the TokenRequest as the body. The media type for this request
+with the TokenRequest as the content. The media type for this request
 is "application/private-token-request". An example request is shown below, where
 Nk = 512.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.1-9">
@@ -1773,7 +1777,7 @@ struct {
 </pre><a href="#section-6.2-4" class="pilcrow">¶</a>
 </div>
 <p id="section-6.2-5">The rsabssa_blind_sign function is defined in <span>[<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-rsa-blind-signatures-06#section-5.1.2." class="relref">Section 5.1.2.</a></span>.
-The Issuer generates an HTTP response with status code 200 whose body consists
+The Issuer generates an HTTP response with status code 200 whose content consists
 of TokenResponse, with the content type set as "application/private-token-response".<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.2-6">
 <pre>
@@ -1792,7 +1796,7 @@ content-length = &lt;Length of TokenResponse&gt;
 <a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-finalization-2" class="section-name selfRef">Finalization</a>
         </h3>
 <p id="section-6.3-1">Upon receipt, the Client handles the response and, if successful, processes the
-body as follows:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+content as follows:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.3-2">
 <pre>
 authenticator = rsabssa_finalize(pkI, nonce, blind_sig, blind_inv)
@@ -2235,6 +2239,10 @@ corresponding media types:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8259">[RFC8259]</dt>
+        <dd>
+<span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8259">https://www.rfc-editor.org/rfc/rfc8259</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="TLS13">[TLS13]</dt>
         <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
@@ -2259,8 +2267,12 @@ corresponding media types:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 <span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Finkel, M.</span>, <span class="refAuthor">Thomson, M.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Key Consistency and Discovery"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wood-key-consistency-03</span>, <time datetime="2022-08-17" class="refDate">17 August 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03">https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="DSS">[DSS]</dt>
-      <dd>
+        <dd>
 <span class="refTitle">"Digital Signature Standard (DSS)"</span>, <span class="seriesInfo">National Institute of Standards and Technology report</span>, <span class="seriesInfo">DOI 10.6028/nist.fips.186-4</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.fips.186-4">https://doi.org/10.6028/nist.fips.186-4</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="HTTP">[HTTP]</dt>
+      <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

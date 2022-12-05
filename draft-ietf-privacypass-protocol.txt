@@ -97,10 +97,11 @@ Table of Contents
    cryptographic tokens that prove nothing other than that they have
    been created by a given server in the past [ARCHITECTURE].
 
-   This document describes the issuance protocol for Privacy Pass.  It
-   specifies two variants: one that is privately verifiable based on the
-   oblivious pseudorandom function from [OPRF], and one that is publicly
-   verifiable based on the blind RSA signature scheme [BLINDRSA].
+   This document describes the issuance protocol for Privacy Pass built
+   on [HTTP].  It specifies two variants: one that is privately
+   verifiable based on the oblivious pseudorandom function from [OPRF],
+   and one that is publicly verifiable based on the blind RSA signature
+   scheme [BLINDRSA].
 
    This document does not cover the Privacy Pass architecture, including
    choices that are necessary for ensuring that client privacy leaks.
@@ -142,43 +143,46 @@ Table of Contents
        protocol.
 
    The Issuer parameters can be obtained from an Issuer via a directory
-   object, which is a JSON object whose values are other JSON objects
-   and URLs for the parameters.
+   object, which is a JSON object [RFC8259], Section 4 whose values are
+   other JSON values [RFC8259], Section 3 for the parameters.
 
-           +====================+==============================+
-           | Field Name         | Value                        |
-           +====================+==============================+
-           | issuer-request-uri | Issuer Request URI resource  |
-           |                    | URL as a JSON string         |
-           +--------------------+------------------------------+
-           | token-keys         | List of Issuer Public Key    |
-           |                    | values, each as JSON objects |
-           +--------------------+------------------------------+
+       +====================+======================================+
+       | Field Name         | Value                                |
+       +====================+======================================+
+       | issuer-request-uri | Issuer Request URI resource percent- |
+       |                    | encoded URL string, represented as a |
+       |                    | JSON string [RFC8259], Section 7     |
+       +--------------------+--------------------------------------+
+       | token-keys         | List of Issuer Public Key values,    |
+       |                    | each represented as JSON objects     |
+       |                    | [RFC8259], Section 4                 |
+       +--------------------+--------------------------------------+
 
                                   Table 1
 
    Each "token-keys" JSON object contains the following fields and
    corresponding raw values.
 
-         +============+==========================================+
-         | Field Name | Value                                    |
-         +============+==========================================+
-         | token-type | Integer value of the Token Type, as      |
-         |            | defined in Section 8.2, as a JSON number |
-         +------------+------------------------------------------+
-         | token-key  | The base64url encoding of the public key |
-         |            | for use with the issuance protocol,      |
-         |            | including padding, as a JSON string      |
-         +------------+------------------------------------------+
+    +============+===================================================+
+    | Field Name | Value                                             |
+    +============+===================================================+
+    | token-type | Integer value of the Token Type, as defined in    |
+    |            | Section 8.2, represented as a JSON number         |
+    |            | [RFC8259], Section 6                              |
+    +------------+---------------------------------------------------+
+    | token-key  | The base64url encoding of the public key for use  |
+    |            | with the issuance protocol, including padding,    |
+    |            | represented as a JSON string [RFC8259], Section 7 |
+    +------------+---------------------------------------------------+
 
-                                  Table 2
+                                 Table 2
 
    Issuers MAY advertise multiple token-keys for the same token-type to
    support key rotation.  In this case, Issuers indicate preference for
    which token key to use based on the order of keys in the list, with
    preference given to keys earlier in the list.
 
-   Altogether, the Issuer's JSON directory could look like:
+   Altogether, the Issuer's directory could look like:
 
  {
     "issuer-request-uri": "https://issuer.example.net/example-token-request",
@@ -290,8 +294,8 @@ Table of Contents
    The values token_input and blinded_element are stored locally and
    used later as described in Section 5.3.  The Client then generates an
    HTTP POST request to send to the Issuer, with the TokenRequest as the
-   body.  The media type for this request is "application/private-token-
-   request".  An example request is shown below.
+   content.  The media type for this request is "application/private-
+   token-request".  An example request is shown below.
 
    :method = POST
    :scheme = https
@@ -348,9 +352,9 @@ Table of Contents
       concat(SerializeScalar(proof[0]), SerializeScalar(proof[1])),
       where Ns is as defined in [OPRF], Section 4.
 
-   The Issuer generates an HTTP response with status code 200 whose body
-   consists of TokenResponse, with the content type set as "application/
-   private-token-response".
+   The Issuer generates an HTTP response with status code 200 whose
+   content consists of TokenResponse, with the content type set as
+   "application/private-token-response".
 
    :status = 200
    content-type = application/private-token-response
@@ -361,7 +365,7 @@ Table of Contents
 5.3.  Finalization
 
    Upon receipt, the Client handles the response and, if successful,
-   deserializes the body values TokenResponse.evaluate_msg and
+   deserializes the content values TokenResponse.evaluate_msg and
    TokenResponse.evaluate_proof, yielding evaluated_element and proof.
    If deserialization of either value fails, the Client aborts the
    protocol.  Otherwise, the Client processes the response as follows:
@@ -491,9 +495,9 @@ valid = (token_authenticator == Token.authenticator)
    *  "blinded_msg" is the Nk-octet request defined above.
 
    The Client then generates an HTTP POST request to send to the Issuer,
-   with the TokenRequest as the body.  The media type for this request
-   is "application/private-token-request".  An example request is shown
-   below, where Nk = 512.
+   with the TokenRequest as the content.  The media type for this
+   request is "application/private-token-request".  An example request
+   is shown below, where Nk = 512.
 
    :method = POST
    :scheme = https
@@ -536,8 +540,8 @@ valid = (token_authenticator == Token.authenticator)
 
    The rsabssa_blind_sign function is defined in [BLINDRSA],
    Section 5.1.2.. The Issuer generates an HTTP response with status
-   code 200 whose body consists of TokenResponse, with the content type
-   set as "application/private-token-response".
+   code 200 whose content consists of TokenResponse, with the content
+   type set as "application/private-token-response".
 
    :status = 200
    content-type = application/private-token-response
@@ -548,7 +552,7 @@ valid = (token_authenticator == Token.authenticator)
 6.3.  Finalization
 
    Upon receipt, the Client handles the response and, if successful,
-   processes the body as follows:
+   processes the content as follows:
 
    authenticator = rsabssa_finalize(pkI, nonce, blind_sig, blind_inv)
 
@@ -792,6 +796,11 @@ valid = (token_authenticator == Token.authenticator)
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC8259]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://www.rfc-editor.org/rfc/rfc8259>.
+
    [TLS13]    Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
@@ -821,6 +830,11 @@ valid = (token_authenticator == Token.authenticator)
               Standards and Technology report,
               DOI 10.6028/nist.fips.186-4, July 2013,
               <https://doi.org/10.6028/nist.fips.186-4>.
+
+   [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", STD 97, RFC 9110,
+              DOI 10.17487/RFC9110, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9110>.
 
 Appendix A.  Acknowledgements
 
