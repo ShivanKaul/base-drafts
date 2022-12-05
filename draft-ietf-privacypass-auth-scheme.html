@@ -1593,12 +1593,20 @@ Clients might experience issues running the issuance protocol, e.g., because the
 or issuer is unavailable, or clients might simply not support the requested token type.
 Origins SHOULD account for such operational or interoperability failures by offering
 clients an alternative type of challenge such as CAPTCHA for accessing a resource.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">To mitigate the risk of deployments becoming dependent on tokens, clients and servers SHOULD grease
+<p id="section-3-7">For example, consider a scenario in which the client is a web browser, and the origin
+can accept either a token or a solution to a puzzle intended to determine if the client
+is a real human user. The origin would send clients a 401 HTTP response that contains a
+token challenge in a "WWW-Authenticate" header field along with content that contains
+the puzzle to display to the user. Clients that are able to respond with a token will
+be able to automatically return the token and not show the puzzle, while clients that
+either do not support tokens or are unable to fetch tokens at a particular time can
+present the user with the puzzle.<a href="#section-3-7" class="pilcrow">¶</a></p>
+<p id="section-3-8">To mitigate the risk of deployments becoming dependent on tokens, clients and servers SHOULD grease
 their behavior unless explicitly configured not to. In particular, clients SHOULD
 ignore token challenges with some non-zero probability. Likewise, origins SHOULD
 randomly choose to not challenge clients for tokens with some non-zero probability.
 Moreover, origins SHOULD include random token types, from the Reserved list of "greased"
-types (defined in <a href="#token-types" class="auto internal xref">Section 5.2</a>), with some non-zero probability.<a href="#section-3-7" class="pilcrow">¶</a></p>
+types (defined in <a href="#token-types" class="auto internal xref">Section 5.2</a>), with some non-zero probability.<a href="#section-3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-considerations">
