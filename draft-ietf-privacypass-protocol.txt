@@ -212,16 +212,17 @@ Table of Contents
 5.  Issuance Protocol for Privately Verifiable Tokens
 
    The Privacy Pass issuance protocol is a two message protocol that
-   takes as input a challenge from the redemption protocol and produces
-   a token, as shown in the figure below.
+   takes as input a TokenChallenge from the redemption protocol
+   [AUTHSCHEME], Section 2.1 and produces a Token [AUTHSCHEME],
+   Section 2.2, as shown in the figure below.
 
-      Origin          Client                   Issuer
-                       (pkI)                 (skI, pkI)
-                     +------------------------------------\
-     Challenge   ----> TokenRequest ------------->        |
-                     |                       (evaluate)   |
-       Token    <----+     <--------------- TokenResponse |
-                     \------------------------------------/
+      Origin            Client                   Issuer
+                         (pkI)                 (skI, pkI)
+                      +------------------------------------\
+   TokenChallenge ----> TokenRequest ------------->        |
+                      |                       (evaluate)   |
+        Token    <----+     <--------------- TokenResponse |
+                      \------------------------------------/
 
    Issuers provide a Private and Public Key, denoted skI and pkI,
    respectively, used to produce tokens as input to the protocol.  See
@@ -236,8 +237,7 @@ Table of Contents
       as described in Section 5.5.
 
    *  Challenge value challenge, an opaque byte string.  For example,
-      this might be provided by the redemption protocol in
-      [HTTP-Authentication].
+      this might be provided by the redemption protocol in [AUTHSCHEME].
 
    Given this configuration and these inputs, the two messages exchanged
    in this protocol are described below.  This section uses notation
@@ -453,8 +453,7 @@ valid = (token_authenticator == Token.authenticator)
       as described in Section 6.5.
 
    *  Challenge value challenge, an opaque byte string.  For example,
-      this might be provided by the redemption protocol in
-      [HTTP-Authentication].
+      this might be provided by the redemption protocol in [AUTHSCHEME].
 
    Given this configuration and these inputs, the two messages exchanged
    in this protocol are described below.
@@ -558,7 +557,7 @@ valid = (token_authenticator == Token.authenticator)
 
    The rsabssa_finalize function is defined in [BLINDRSA],
    Section 5.1.3.. If this succeeds, the Client then constructs a Token
-   as described in [HTTP-Authentication] as follows:
+   as described in [AUTHSCHEME] as follows:
 
    struct {
        uint16_t token_type = 0x0002
@@ -642,21 +641,21 @@ valid = (token_authenticator == Token.authenticator)
 
 8.2.  Token Type
 
-   This document updates the "Token Type" Registry with the following
-   values.
+   This document updates the "Token Type" Registry from [AUTHSCHEME],
+   Section 5.2 with the following values.
 
-    +======+===========+============+========+========+===+===========+
-    |Value | Name      | Publicly   |Public  |Private |Nk | Reference |
-    |      |           | Verifiable |Metadata|Metadata|   |           |
-    +======+===========+============+========+========+===+===========+
-    |0x0001| VOPRF     | N          |N       |N       |48 | Section 5 |
-    |      | (P-384,   |            |        |        |   |           |
-    |      | SHA-384)  |            |        |        |   |           |
-    +------+-----------+------------+--------+--------+---+-----------+
-    |0x0002| Blind RSA | Y          |N       |N       |256| Section 6 |
-    |      | (SHA-384, |            |        |        |   |           |
-    |      | 2048-bit) |            |        |        |   |           |
-    +------+-----------+------------+--------+--------+---+-----------+
+    +======+=========+============+========+========+===+===+=========+
+    |Value |Name     | Publicly   |Public  |Private |Nk |Nid|Reference|
+    |      |         | Verifiable |Metadata|Metadata|   |   |         |
+    +======+=========+============+========+========+===+===+=========+
+    |0x0001|VOPRF    | N          |N       |N       |48 |32 |Section 5|
+    |      |(P-384,  |            |        |        |   |   |         |
+    |      |SHA-384) |            |        |        |   |   |         |
+    +------+---------+------------+--------+--------+---+---+---------+
+    |0x0002|Blind RSA| Y          |N       |N       |256|32 |Section 6|
+    |      |(SHA-384,|            |        |        |   |   |         |
+    |      |2048-bit)|            |        |        |   |   |         |
+    +------+---------+------------+--------+--------+---+---+---------+
 
                             Table 4: Token Types
 

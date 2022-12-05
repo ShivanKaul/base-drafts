@@ -1405,17 +1405,17 @@ interactive or non-interactive, and per-origin or cross-origin.<a href="#section
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-issuance-protocol-for-priva" class="section-name selfRef">Issuance Protocol for Privately Verifiable Tokens</a>
       </h2>
 <p id="section-5-1">The Privacy Pass issuance protocol is a two message protocol that takes
-as input a challenge from the redemption protocol and produces a token,
-as shown in the figure below.<a href="#section-5-1" class="pilcrow">¶</a></p>
+as input a TokenChallenge from the redemption protocol <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>], <a href="https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00#section-2.1" class="relref">Section 2.1</a></span>
+and produces a Token <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>], <a href="https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00#section-2.2" class="relref">Section 2.2</a></span>, as shown in the figure below.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5-2">
 <pre>
-   Origin          Client                   Issuer
-                    (pkI)                 (skI, pkI)
-                  +------------------------------------\
-  Challenge   ----&gt; TokenRequest -------------&gt;        |
-                  |                       (evaluate)   |
-    Token    &lt;----+     &lt;--------------- TokenResponse |
-                  \------------------------------------/
+   Origin            Client                   Issuer
+                      (pkI)                 (skI, pkI)
+                   +------------------------------------\
+TokenChallenge ----&gt; TokenRequest -------------&gt;        |
+                   |                       (evaluate)   |
+     Token    &lt;----+     &lt;--------------- TokenResponse |
+                   \------------------------------------/
 </pre><a href="#section-5-2" class="pilcrow">¶</a>
 </div>
 <p id="section-5-3">Issuers provide a Private and Public Key, denoted skI and pkI, respectively,
@@ -1430,7 +1430,7 @@ can be used to construct HTTP requests to the Issuer.<a href="#section-5-5.1" cl
 described in <a href="#issuer-configuration" class="auto internal xref">Section 5.5</a>.<a href="#section-5-5.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-5-5.3">Challenge value <code>challenge</code>, an opaque byte string. For example, this might
-be provided by the redemption protocol in <span>[<a href="#HTTP-Authentication" class="cite xref">HTTP-Authentication</a>]</span>.<a href="#section-5-5.3" class="pilcrow">¶</a>
+be provided by the redemption protocol in <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>]</span>.<a href="#section-5-5.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-5-6">Given this configuration and these inputs, the two messages exchanged in
@@ -1682,7 +1682,7 @@ can be used to construct HTTP requests to the Issuer.<a href="#section-6-6.1" cl
 described in <a href="#public-issuer-configuration" class="auto internal xref">Section 6.5</a>.<a href="#section-6-6.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-6-6.3">Challenge value <code>challenge</code>, an opaque byte string. For example, this might
-be provided by the redemption protocol in <span>[<a href="#HTTP-Authentication" class="cite xref">HTTP-Authentication</a>]</span>.<a href="#section-6-6.3" class="pilcrow">¶</a>
+be provided by the redemption protocol in <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>]</span>.<a href="#section-6-6.3" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-6-7">Given this configuration and these inputs, the two messages exchanged in
@@ -1804,7 +1804,7 @@ authenticator = rsabssa_finalize(pkI, nonce, blind_sig, blind_inv)
 </div>
 <p id="section-6.3-3">The rsabssa_finalize function is defined in <span>[<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>], <a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-rsa-blind-signatures-06#section-5.1.3." class="relref">Section 5.1.3.</a></span>.
 If this succeeds, the Client then constructs a Token as described in
-<span>[<a href="#HTTP-Authentication" class="cite xref">HTTP-Authentication</a>]</span> as follows:<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+<span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>]</span> as follows:<a href="#section-6.3-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.3-4">
 <pre>
 struct {
@@ -1926,7 +1926,7 @@ consistency mechanism to help ensure they are not being given unique keys; see
         <h3 id="name-token-type">
 <a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-token-type" class="section-name selfRef">Token Type</a>
         </h3>
-<p id="section-8.2-1">This document updates the "Token Type" Registry with the following values.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+<p id="section-8.2-1">This document updates the "Token Type" Registry from <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>], <a href="https://datatracker.ietf.org/doc/html/draft-pauly-privacypass-auth-scheme-00#section-5.2" class="relref">Section 5.2</a></span> with the following values.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 <span id="name-token-types"></span><div id="tokentype-values">
 <table class="center" id="table-4">
           <caption>
@@ -1941,6 +1941,7 @@ consistency mechanism to help ensure they are not being given unique keys; see
               <th class="text-left" rowspan="1" colspan="1">Public Metadata</th>
               <th class="text-left" rowspan="1" colspan="1">Private Metadata</th>
               <th class="text-left" rowspan="1" colspan="1">Nk</th>
+              <th class="text-left" rowspan="1" colspan="1">Nid</th>
               <th class="text-left" rowspan="1" colspan="1">Reference</th>
             </tr>
           </thead>
@@ -1952,6 +1953,7 @@ consistency mechanism to help ensure they are not being given unique keys; see
               <td class="text-left" rowspan="1" colspan="1">N</td>
               <td class="text-left" rowspan="1" colspan="1">N</td>
               <td class="text-left" rowspan="1" colspan="1">48</td>
+              <td class="text-left" rowspan="1" colspan="1">32</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <a href="#private-flow" class="auto internal xref">Section 5</a>
 </td>
@@ -1963,6 +1965,7 @@ consistency mechanism to help ensure they are not being given unique keys; see
               <td class="text-left" rowspan="1" colspan="1">N</td>
               <td class="text-left" rowspan="1" colspan="1">N</td>
               <td class="text-left" rowspan="1" colspan="1">256</td>
+              <td class="text-left" rowspan="1" colspan="1">32</td>
               <td class="text-left" rowspan="1" colspan="1">
                 <a href="#public-flow" class="auto internal xref">Section 6</a>
 </td>
