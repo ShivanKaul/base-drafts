@@ -13,9 +13,7 @@
 <meta content="
        This document specifies two variants of the the two-message issuance protocol
 for Privacy Pass tokens: one that produces tokens that are privately
-verifiable, and another that produces tokens that are publicly verifiable.
-The privately verifiable issuance protocol optionally supports public
-metadata during the issuance flow. 
+verifiable, and another that produces tokens that are publicly verifiable. 
     " name="description">
 <meta content="xml2rfc 3.15.3" name="generator">
 <meta content="Internet-Draft" name="keyword">
@@ -1096,9 +1094,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document specifies two variants of the the two-message issuance protocol
 for Privacy Pass tokens: one that produces tokens that are privately
-verifiable, and another that produces tokens that are publicly verifiable.
-The privately verifiable issuance protocol optionally supports public
-metadata during the issuance flow.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+verifiable, and another that produces tokens that are publicly verifiable.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1655,38 +1651,31 @@ in rotation.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
       </h2>
 <p id="section-6-1">This section describes a variant of the issuance protocol in <a href="#private-flow" class="auto internal xref">Section 5</a>
 for producing publicly verifiable tokens. It differs from the previous variant
-in two important ways:<a href="#section-6-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-6-2">
-<li id="section-6-2.1">The output tokens are publicly verifiable by anyone with the Issuer public
-key.<a href="#section-6-2.1" class="pilcrow">¶</a>
-</li>
-        <li id="section-6-2.2">The issuance protocol does not admit public or private metadata to bind
-additional context to tokens.<a href="#section-6-2.2" class="pilcrow">¶</a>
-</li>
-      </ol>
-<p id="section-6-3">The first property means that any Origin can select a given Issuer to produce tokens, as long
-as the Origin has the Issuer public key, without explicit coordination or permission
-from the Issuer. This is because the Issuer does not learn the Origin that requested
-the token during the issuance protocol.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">Beyond these differences, the publicly verifiable issuance protocol variant is nearly
+in that the output tokens are publicly verifiable by anyone with the Issuer public
+key.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">This means any Origin can select a given Issuer to produce tokens, as long as the
+Origin has the Issuer public key, without explicit coordination or permission from
+the Issuer. This is because the Issuer does not learn the Origin that requested the
+token during the issuance protocol.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">Beyond this difference, the publicly verifiable issuance protocol variant is nearly
 identical to the privately verifiable issuance protocol variant. In particular, Issuers
 provide a Private and Public Key, denoted skI and pkI, respectively, used to produce
 tokens as input to the protocol. See <a href="#public-issuer-configuration" class="auto internal xref">Section 6.5</a> for how this key
-pair is generated.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Clients provide the following as input to the issuance protocol:<a href="#section-6-5" class="pilcrow">¶</a></p>
+pair is generated.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">Clients provide the following as input to the issuance protocol:<a href="#section-6-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-6.1">Issuer name, identifying the Issuer. This is typically a host name that
-can be used to construct HTTP requests to the Issuer.<a href="#section-6-6.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6-5.1">Issuer name, identifying the Issuer. This is typically a host name that
+can be used to construct HTTP requests to the Issuer.<a href="#section-6-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-6-6.2">Issuer Public Key pkI, with a key identifier <code>token_key_id</code> computed as
-described in <a href="#public-issuer-configuration" class="auto internal xref">Section 6.5</a>.<a href="#section-6-6.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-6-5.2">Issuer Public Key pkI, with a key identifier <code>token_key_id</code> computed as
+described in <a href="#public-issuer-configuration" class="auto internal xref">Section 6.5</a>.<a href="#section-6-5.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-6-6.3">Challenge value <code>challenge</code>, an opaque byte string. For example, this might
-be provided by the redemption protocol in <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>]</span>.<a href="#section-6-6.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-6-5.3">Challenge value <code>challenge</code>, an opaque byte string. For example, this might
+be provided by the redemption protocol in <span>[<a href="#AUTHSCHEME" class="cite xref">AUTHSCHEME</a>]</span>.<a href="#section-6-5.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-6-7">Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below.<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-6">Given this configuration and these inputs, the two messages exchanged in
+this protocol are described below.<a href="#section-6-6" class="pilcrow">¶</a></p>
 <div id="public-request">
 <section id="section-6.1">
         <h3 id="name-client-to-issuer-request-2">
@@ -1827,9 +1816,9 @@ If the rsabssa_finalize function fails, the Client aborts the protocol.<a href="
         </h3>
 <p id="section-6.4-1">To verify a token, a verifier checks that Token.authenticator is a valid
 signature over the remainder of the token input as described below. The
-function <code>RSA-Verify(msg, pk, sig)</code> is a procedure to verify a signature <code>sig</code>
-over message <code>msg</code> using the public key <code>pk</code>. Its implementation is not
-specified in this document.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+function <code>RSASSA-PSS-VERIFY</code> is defined in <span><a href="https://rfc-editor.org/rfc/rfc8017#section-8.1.2" class="relref">Section 8.1.2</a> of [<a href="#RFC8017" class="cite xref">RFC8017</a>]</span>,
+using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
+generation function (MGF), and a 48-byte salt length (sLen).<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-6.4-2">
 <pre>
 token_authenticator_input =
@@ -1837,7 +1826,7 @@ token_authenticator_input =
          Token.nonce,
          Token.challenge_digest,
          Token.token_key_id)
-valid = RSA-Verify(token_authenticator_input, pkI, Token.authenticator)
+valid = RSASSA-PSS-VERIFY(pkI, token_authenticator_input, Token.authenticator)
 </pre><a href="#section-6.4-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2240,6 +2229,10 @@ corresponding media types:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 <dt id="RFC5756">[RFC5756]</dt>
         <dd>
 <span class="refAuthor">Turner, S.</span>, <span class="refAuthor">Brown, D.</span>, <span class="refAuthor">Yiu, K.</span>, <span class="refAuthor">Housley, R.</span>, and <span class="refAuthor">T. Polk</span>, <span class="refTitle">"Updates for RSAES-OAEP and RSASSA-PSS Algorithm Parameters"</span>, <span class="seriesInfo">RFC 5756</span>, <span class="seriesInfo">DOI 10.17487/RFC5756</span>, <time datetime="2010-01" class="refDate">January 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5756">https://www.rfc-editor.org/rfc/rfc5756</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8017">[RFC8017]</dt>
+        <dd>
+<span class="refAuthor">Moriarty, K., Ed.</span>, <span class="refAuthor">Kaliski, B.</span>, <span class="refAuthor">Jonsson, J.</span>, and <span class="refAuthor">A. Rusch</span>, <span class="refTitle">"PKCS #1: RSA Cryptography Specifications Version 2.2"</span>, <span class="seriesInfo">RFC 8017</span>, <span class="seriesInfo">DOI 10.17487/RFC8017</span>, <time datetime="2016-11" class="refDate">November 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8017">https://www.rfc-editor.org/rfc/rfc8017</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>

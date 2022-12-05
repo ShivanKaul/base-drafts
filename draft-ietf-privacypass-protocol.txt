@@ -22,8 +22,7 @@ Abstract
    This document specifies two variants of the the two-message issuance
    protocol for Privacy Pass tokens: one that produces tokens that are
    privately verifiable, and another that produces tokens that are
-   publicly verifiable.  The privately verifiable issuance protocol
-   optionally supports public metadata during the issuance flow.
+   publicly verifiable.
 
 Status of This Memo
 
@@ -423,21 +422,16 @@ valid = (token_authenticator == Token.authenticator)
 
    This section describes a variant of the issuance protocol in
    Section 5 for producing publicly verifiable tokens.  It differs from
-   the previous variant in two important ways:
+   the previous variant in that the output tokens are publicly
+   verifiable by anyone with the Issuer public key.
 
-   1.  The output tokens are publicly verifiable by anyone with the
-       Issuer public key.
+   This means any Origin can select a given Issuer to produce tokens, as
+   long as the Origin has the Issuer public key, without explicit
+   coordination or permission from the Issuer.  This is because the
+   Issuer does not learn the Origin that requested the token during the
+   issuance protocol.
 
-   2.  The issuance protocol does not admit public or private metadata
-       to bind additional context to tokens.
-
-   The first property means that any Origin can select a given Issuer to
-   produce tokens, as long as the Origin has the Issuer public key,
-   without explicit coordination or permission from the Issuer.  This is
-   because the Issuer does not learn the Origin that requested the token
-   during the issuance protocol.
-
-   Beyond these differences, the publicly verifiable issuance protocol
+   Beyond this difference, the publicly verifiable issuance protocol
    variant is nearly identical to the privately verifiable issuance
    protocol variant.  In particular, Issuers provide a Private and
    Public Key, denoted skI and pkI, respectively, used to produce tokens
@@ -574,16 +568,17 @@ valid = (token_authenticator == Token.authenticator)
 
    To verify a token, a verifier checks that Token.authenticator is a
    valid signature over the remainder of the token input as described
-   below.  The function RSA-Verify(msg, pk, sig) is a procedure to
-   verify a signature sig over message msg using the public key pk.  Its
-   implementation is not specified in this document.
+   below.  The function RSASSA-PSS-VERIFY is defined in Section 8.1.2 of
+   [RFC8017], using SHA-384 as the Hash function, MGF1 with SHA-384 as
+   the PSS mask generation function (MGF), and a 48-byte salt length
+   (sLen).
 
- token_authenticator_input =
-   concat(Token.token_type,
-          Token.nonce,
-          Token.challenge_digest,
-          Token.token_key_id)
- valid = RSA-Verify(token_authenticator_input, pkI, Token.authenticator)
+token_authenticator_input =
+  concat(Token.token_type,
+         Token.nonce,
+         Token.challenge_digest,
+         Token.token_key_id)
+valid = RSASSA-PSS-VERIFY(pkI, token_authenticator_input, Token.authenticator)
 
 6.5.  Issuer Configuration
 
@@ -796,6 +791,11 @@ valid = (token_authenticator == Token.authenticator)
               "Updates for RSAES-OAEP and RSASSA-PSS Algorithm
               Parameters", RFC 5756, DOI 10.17487/RFC5756, January 2010,
               <https://www.rfc-editor.org/rfc/rfc5756>.
+
+   [RFC8017]  Moriarty, K., Ed., Kaliski, B., Jonsson, J., and A. Rusch,
+              "PKCS #1: RSA Cryptography Specifications Version 2.2",
+              RFC 8017, DOI 10.17487/RFC8017, November 2016,
+              <https://www.rfc-editor.org/rfc/rfc8017>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
