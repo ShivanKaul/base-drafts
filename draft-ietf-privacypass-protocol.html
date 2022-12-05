@@ -13,7 +13,8 @@
 <meta content="
        This document specifies two variants of the the two-message issuance protocol
 for Privacy Pass tokens: one that produces tokens that are privately
-verifiable, and another that produces tokens that are publicly verifiable. 
+verifiable using the issuance private key, and another that produces tokens
+that are publicly verifiable using the issuance public key. 
     " name="description">
 <meta content="xml2rfc 3.15.3" name="generator">
 <meta content="Internet-Draft" name="keyword">
@@ -1094,7 +1095,8 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document specifies two variants of the the two-message issuance protocol
 for Privacy Pass tokens: one that produces tokens that are privately
-verifiable, and another that produces tokens that are publicly verifiable.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+verifiable using the issuance private key, and another that produces tokens
+that are publicly verifiable using the issuance public key.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1263,10 +1265,10 @@ mechanism. In essence, the protocol allows clients to provide
 cryptographic tokens that prove nothing other than that they have been
 created by a given server in the past <span>[<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document describes the issuance protocol for Privacy Pass built on <span>[<a href="#HTTP" class="cite xref">HTTP</a>]</span>. It specifies
-two variants: one that is privately verifiable based on the oblivious
-pseudorandom function from <span>[<a href="#OPRF" class="cite xref">OPRF</a>]</span>, and one that is
-publicly verifiable based on the blind RSA signature scheme
-<span>[<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
+two variants: one that is privately verifiable using the issuance private key
+based on the oblivious pseudorandom function from <span>[<a href="#OPRF" class="cite xref">OPRF</a>]</span>,
+and one that is publicly verifiable using the issuance public key based on
+the blind RSA signature scheme <span>[<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">This document does not cover the Privacy Pass architecture, including
 choices that are necessary for ensuring that client privacy leaks.
 This information is covered in <span>[<a href="#ARCHITECTURE" class="cite xref">ARCHITECTURE</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
@@ -1296,7 +1298,7 @@ tokens.<a href="#section-2-3.4" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-2-4">Unless otherwise specified, this document encodes protocol messages in TLS
-notation from <span>[<a href="#TLS13" class="cite xref">TLS13</a>]</span>, Section 3.<a href="#section-2-4" class="pilcrow">¶</a></p>
+notation from <span>[<a href="#TLS13" class="cite xref">TLS13</a>]</span>, Section 3. Moreover, all constants are in network byte order.<a href="#section-2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="setup">
@@ -1306,11 +1308,11 @@ notation from <span>[<a href="#TLS13" class="cite xref">TLS13</a>]</span>, Secti
       </h2>
 <p id="section-3-1">Issuers MUST provide two parameters for configuration:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-2">
-<li id="section-3-2.1">Issuer Request URI: a token request URL for generating access tokens.
+<li id="section-3-2.1">Issuer Request URI: A token request URL for generating access tokens.
 For example, an Issuer URL might be https://issuer.example.net/example-token-request.
 This parameter uses resource media type "text/plain".<a href="#section-3-2.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-2.2">Issuer Public Key values: an Issuer Public Key for an issuance protocol.<a href="#section-3-2.2" class="pilcrow">¶</a>
+        <li id="section-3-2.2">Issuer Public Key values: An Issuer Public Key for an issuance protocol.<a href="#section-3-2.2" class="pilcrow">¶</a>
 </li>
       </ol>
 <p id="section-3-3">The Issuer parameters can be obtained from an Issuer via a directory object, which is a JSON
@@ -1466,7 +1468,7 @@ for use when finalizing the issuance protocol to produce a token
 <div class="alignLeft art-text artwork" id="section-5.1-8">
 <pre>
 struct {
-   uint16_t token_type = 0x0001;
+   uint16_t token_type = 0x0001; /* Token type VOPRF(P-384, SHA-384) */
    uint8_t truncated_token_key_id;
    uint8_t blinded_msg[Ne];
 } TokenRequest;
@@ -1583,7 +1585,7 @@ succeeds, the Client then constructs a Token as follows:<a href="#section-5.3-3"
 <div class="alignLeft art-text artwork" id="section-5.3-4">
 <pre>
 struct {
-    uint16_t token_type = 0x0001
+    uint16_t token_type = 0x0001; /* Token type VOPRF(P-384, SHA-384) */
     uint8_t nonce[32];
     uint8_t challenge_digest[32];
     uint8_t token_key_id[32];
@@ -1600,8 +1602,9 @@ If the Finalize function fails, the Client aborts the protocol.<a href="#section
         <h3 id="name-token-verification">
 <a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-token-verification" class="section-name selfRef">Token Verification</a>
         </h3>
-<p id="section-5.4-1">To verify a token, a verifier creates a VOPRF context, evaluates the token contents,
-and compares the result against the token authenticator value, as follows:<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-1">To verify a token, a verifier creates a VOPRF context using the Issuer Private Key,
+evaluates the token contents, and compares the result against the token authenticator
+value, as follows:<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-5.4-2">
 <pre>
 server_context = SetupVOPRFServer(0x0004, skI, pkI)
@@ -1699,7 +1702,7 @@ in <a href="#public-finalize" class="auto internal xref">Section 6.3</a>).<a hre
 <div class="alignLeft art-text artwork" id="section-6.1-5">
 <pre>
 struct {
-   uint16_t token_type = 0x0002
+   uint16_t token_type = 0x0002; /* Token type Blind RSA (2048-bit) */
    uint8_t truncated_token_key_id;
    uint8_t blinded_msg[Nk];
 } TokenRequest;
@@ -1797,7 +1800,7 @@ If this succeeds, the Client then constructs a Token as described in
 <div class="alignLeft art-text artwork" id="section-6.3-4">
 <pre>
 struct {
-    uint16_t token_type = 0x0002
+    uint16_t token_type = 0x0002; /* Token type Blind RSA (2048-bit) */
     uint8_t nonce[32];
     uint8_t challenge_digest[32];
     uint8_t token_key_id[32];
@@ -1815,7 +1818,7 @@ If the rsabssa_finalize function fails, the Client aborts the protocol.<a href="
 <a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-token-verification-2" class="section-name selfRef">Token Verification</a>
         </h3>
 <p id="section-6.4-1">To verify a token, a verifier checks that Token.authenticator is a valid
-signature over the remainder of the token input as described below. The
+signature over the remainder of the token input using the Issuer Public Key. The
 function <code>RSASSA-PSS-VERIFY</code> is defined in <span><a href="https://rfc-editor.org/rfc/rfc8017#section-8.1.2" class="relref">Section 8.1.2</a> of [<a href="#RFC8017" class="cite xref">RFC8017</a>]</span>,
 using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
 generation function (MGF), and a 48-byte salt length (sLen).<a href="#section-6.4-1" class="pilcrow">¶</a></p>
@@ -2263,7 +2266,7 @@ corresponding media types:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="CONSISTENCY">[CONSISTENCY]</dt>
         <dd>
-<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Finkel, M.</span>, <span class="refAuthor">Thomson, M.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Key Consistency and Discovery"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wood-key-consistency-03</span>, <time datetime="2022-08-17" class="refDate">17 August 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03">https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03</a>&gt;</span>. </dd>
+<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
 <dd class="break"></dd>
 <dt id="DSS">[DSS]</dt>
         <dd>

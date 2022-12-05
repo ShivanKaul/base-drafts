@@ -21,8 +21,9 @@ Abstract
 
    This document specifies two variants of the the two-message issuance
    protocol for Privacy Pass tokens: one that produces tokens that are
-   privately verifiable, and another that produces tokens that are
-   publicly verifiable.
+   privately verifiable using the issuance private key, and another that
+   produces tokens that are publicly verifiable using the issuance
+   public key.
 
 Status of This Memo
 
@@ -98,9 +99,10 @@ Table of Contents
 
    This document describes the issuance protocol for Privacy Pass built
    on [HTTP].  It specifies two variants: one that is privately
-   verifiable based on the oblivious pseudorandom function from [OPRF],
-   and one that is publicly verifiable based on the blind RSA signature
-   scheme [BLINDRSA].
+   verifiable using the issuance private key based on the oblivious
+   pseudorandom function from [OPRF], and one that is publicly
+   verifiable using the issuance public key based on the blind RSA
+   signature scheme [BLINDRSA].
 
    This document does not cover the Privacy Pass architecture, including
    choices that are necessary for ensuring that client privacy leaks.
@@ -127,18 +129,19 @@ Table of Contents
       verifying tokens.
 
    Unless otherwise specified, this document encodes protocol messages
-   in TLS notation from [TLS13], Section 3.
+   in TLS notation from [TLS13], Section 3.  Moreover, all constants are
+   in network byte order.
 
 3.  Configuration
 
    Issuers MUST provide two parameters for configuration:
 
-   1.  Issuer Request URI: a token request URL for generating access
+   1.  Issuer Request URI: A token request URL for generating access
        tokens.  For example, an Issuer URL might be
        https://issuer.example.net/example-token-request.  This parameter
        uses resource media type "text/plain".
 
-   2.  Issuer Public Key values: an Issuer Public Key for an issuance
+   2.  Issuer Public Key values: An Issuer Public Key for an issuance
        protocol.
 
    The Issuer parameters can be obtained from an Issuer via a directory
@@ -271,11 +274,11 @@ Table of Contents
 
    The Client then creates a TokenRequest structured as follows:
 
-   struct {
-      uint16_t token_type = 0x0001;
-      uint8_t truncated_token_key_id;
-      uint8_t blinded_msg[Ne];
-   } TokenRequest;
+ struct {
+    uint16_t token_type = 0x0001; /* Token type VOPRF(P-384, SHA-384) */
+    uint8_t truncated_token_key_id;
+    uint8_t blinded_msg[Ne];
+ } TokenRequest;
 
    The structure fields are defined as follows:
 
@@ -374,22 +377,22 @@ authenticator = client_context.Finalize(token_input, blind, evaluated_element, b
    The Finalize function is defined in [OPRF], Section 3.3.2.  If this
    succeeds, the Client then constructs a Token as follows:
 
-   struct {
-       uint16_t token_type = 0x0001
-       uint8_t nonce[32];
-       uint8_t challenge_digest[32];
-       uint8_t token_key_id[32];
-       uint8_t authenticator[Nk];
-   } Token;
+struct {
+    uint16_t token_type = 0x0001; /* Token type VOPRF(P-384, SHA-384) */
+    uint8_t nonce[32];
+    uint8_t challenge_digest[32];
+    uint8_t token_key_id[32];
+    uint8_t authenticator[Nk];
+} Token;
 
    The Token.nonce value is that which was sampled in Section 5.1.  If
    the Finalize function fails, the Client aborts the protocol.
 
 5.4.  Token Verification
 
-   To verify a token, a verifier creates a VOPRF context, evaluates the
-   token contents, and compares the result against the token
-   authenticator value, as follows:
+   To verify a token, a verifier creates a VOPRF context using the
+   Issuer Private Key, evaluates the token contents, and compares the
+   result against the token authenticator value, as follows:
 
 server_context = SetupVOPRFServer(0x0004, skI, pkI)
 token_authenticator_input =
@@ -470,11 +473,11 @@ valid = (token_authenticator == Token.authenticator)
 
    The Client then creates a TokenRequest structured as follows:
 
-   struct {
-      uint16_t token_type = 0x0002
-      uint8_t truncated_token_key_id;
-      uint8_t blinded_msg[Nk];
-   } TokenRequest;
+  struct {
+     uint16_t token_type = 0x0002; /* Token type Blind RSA (2048-bit) */
+     uint8_t truncated_token_key_id;
+     uint8_t blinded_msg[Nk];
+  } TokenRequest;
 
    The structure fields are defined as follows:
 
@@ -553,13 +556,13 @@ valid = (token_authenticator == Token.authenticator)
    Section 5.1.3.. If this succeeds, the Client then constructs a Token
    as described in [AUTHSCHEME] as follows:
 
-   struct {
-       uint16_t token_type = 0x0002
-       uint8_t nonce[32];
-       uint8_t challenge_digest[32];
-       uint8_t token_key_id[32];
-       uint8_t authenticator[Nk];
-   } Token;
+ struct {
+     uint16_t token_type = 0x0002; /* Token type Blind RSA (2048-bit) */
+     uint8_t nonce[32];
+     uint8_t challenge_digest[32];
+     uint8_t token_key_id[32];
+     uint8_t authenticator[Nk];
+ } Token;
 
    The Token.nonce value is that which was sampled in Section 5.1.  If
    the rsabssa_finalize function fails, the Client aborts the protocol.
@@ -567,11 +570,11 @@ valid = (token_authenticator == Token.authenticator)
 6.4.  Token Verification
 
    To verify a token, a verifier checks that Token.authenticator is a
-   valid signature over the remainder of the token input as described
-   below.  The function RSASSA-PSS-VERIFY is defined in Section 8.1.2 of
-   [RFC8017], using SHA-384 as the Hash function, MGF1 with SHA-384 as
-   the PSS mask generation function (MGF), and a 48-byte salt length
-   (sLen).
+   valid signature over the remainder of the token input using the
+   Issuer Public Key. The function RSASSA-PSS-VERIFY is defined in
+   Section 8.1.2 of [RFC8017], using SHA-384 as the Hash function, MGF1
+   with SHA-384 as the PSS mask generation function (MGF), and a 48-byte
+   salt length (sLen).
 
 token_authenticator_input =
   concat(Token.token_type,
@@ -825,11 +828,7 @@ valid = RSASSA-PSS-VERIFY(pkI, token_authenticator_input, Token.authenticator)
               privacypass-architecture-08>.
 
    [CONSISTENCY]
-              Davidson, A., Finkel, M., Thomson, M., and C. A. Wood,
-              "Key Consistency and Discovery", Work in Progress,
-              Internet-Draft, draft-wood-key-consistency-03, 17 August
-              2022, <https://datatracker.ietf.org/doc/html/draft-wood-
-              key-consistency-03>.
+              "*** BROKEN REFERENCE ***".
 
    [DSS]      "Digital Signature Standard (DSS)", National Institute of
               Standards and Technology report,
