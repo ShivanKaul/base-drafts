@@ -5,10 +5,10 @@
 Network Working Group                                        A. Davidson
 Internet-Draft                                                       LIP
 Intended status: Informational                                J. Iyengar
-Expires: 5 June 2023                                              Fastly
+Expires: 8 June 2023                                              Fastly
                                                               C. A. Wood
                                                               Cloudflare
-                                                         2 December 2022
+                                                         5 December 2022
 
 
                      The Privacy Pass Architecture
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 June 2023.
+   This Internet-Draft will expire on 8 June 2023.
 
 Copyright Notice
 
@@ -868,11 +868,11 @@ Table of Contents
 8.2.  Informative References
 
    [CENTRALIZATION]
-              Nottingham, M., "Centralization, Decentralization, and
-              Internet Standards", Work in Progress, Internet-Draft,
-              draft-nottingham-avoiding-internet-centralization-05, 9
-              July 2022, <https://datatracker.ietf.org/doc/html/draft-
-              nottingham-avoiding-internet-centralization-05>.
+              Nottingham, M., "Internet Consolidation: What can
+              Standards Efforts Do?", Work in Progress, Internet-Draft,
+              draft-nottingham-avoiding-internet-centralization-06, 3
+              December 2022, <https://datatracker.ietf.org/doc/html/
+              draft-nottingham-avoiding-internet-centralization-06>.
 
    [CONSISTENCY]
               Davidson, A., Finkel, M., Thomson, M., and C. A. Wood,

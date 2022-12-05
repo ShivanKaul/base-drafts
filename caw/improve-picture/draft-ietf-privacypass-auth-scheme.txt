@@ -5,10 +5,10 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                Apple Inc.
 Intended status: Standards Track                               S. Valdez
-Expires: 5 June 2023                                          Google LLC
+Expires: 8 June 2023                                          Google LLC
                                                               C. A. Wood
                                                               Cloudflare
-                                                         2 December 2022
+                                                         5 December 2022
 
 
               The Privacy Pass HTTP Authentication Scheme
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 June 2023.
+   This Internet-Draft will expire on 8 June 2023.
 
 Copyright Notice
 
@@ -93,7 +93,7 @@ Table of Contents
    perform the token challenge and token redemption flow.  In
    particular, origins challenge clients for a token with an HTTP
    Authentication challenge (using the WWW-Authenticate response header
-   field).  Clients then response to that challenge with an HTTP
+   field).  Clients then respond to that challenge with an HTTP
    authentiation response (using the Authorization request header
    field).  Clients produce an authentication response based on the
    origin challenge by running the token issuance protocol [ISSUANCE].
