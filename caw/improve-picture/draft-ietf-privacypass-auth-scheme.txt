@@ -96,10 +96,10 @@ Table of Contents
    field).  Clients then respond to that challenge with an HTTP
    authentiation response (using the Authorization request header
    field).  Clients produce an authentication response based on the
-   origin challenge by running the token issuance protocol [ISSUANCE].
-   The act of presenting a token in an Authorization request header is
-   referred to as token redemption.  This interaction between client and
-   origin is shown below.
+   origin's token challenge by running the token issuance protocol
+   [ISSUANCE].  The act of presenting a token in an Authorization
+   request header is referred to as token redemption.  This interaction
+   between client and origin is shown below.
 
    Client                             Relying Party (Origin)
 
