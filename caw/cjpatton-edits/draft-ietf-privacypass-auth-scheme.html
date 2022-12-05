@@ -1216,24 +1216,30 @@ be used as Privacy Pass tokens.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">This document defines a common HTTP authentication scheme (<span>[<a href="#RFC9110" class="cite xref">RFC9110</a>], <a href="https://rfc-editor.org/rfc/rfc9110#section-11" class="relref">Section 11</a></span>),
 PrivateToken, that allows clients to redeem various kinds of Privacy Pass
 tokens.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Clients and relying parties interact using this scheme to perform the token challenge
-and token redemption flow. Clients use a token issuance protocol to actually fetch
-tokens to redeem.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-4">Clients and relying parties (origins) interact using this scheme to perform the
+token challenge and token redemption flow. In particular, origins challenge clients
+for a token with an HTTP Authentication challenge (using the WWW-Authenticate response
+header field). Clients then respond to that challenge with an HTTP authentiation response
+(using the Authorization request header field). Clients produce an authentication response
+based on the origin's token challenge by running the token issuance protocol <span>[<a href="#ISSUANCE" class="cite xref">ISSUANCE</a>]</span>.
+The act of presenting a token in an Authorization request header is referred to as token
+redemption. This interaction between client and origin is shown below.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <span id="name-token-architectural-compone"></span><div id="fig-overview">
 <figure id="figure-1">
         <div class="alignLeft art-text artwork" id="section-1-5.1">
 <pre>
  Client                             Relying Party (Origin)
 
-    &lt;------------------------------ Challenge \
-                                              |
+    &lt;---------------------- WWW-Authenticate  \  Challenge
+                            (TokenChallenge)  |
 +----------------------------------\          |
 |                                  |          |
 |  Issuance Protocol               |          |
 |                                  |          |
 +----------------------------------/          |
                                               |
-     Redemption -------------------------- &gt;  /
+  Authorization ---------------------------&gt;  /  Response (redemption)
+     (Token)
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
@@ -1269,7 +1275,7 @@ to create a signed token.<a href="#section-1.1-4.1" class="pilcrow">¶</a>
 the "WWW-Authenticate" HTTP header field. This challenge is bound to a specific token
 issuer and issuance protocol, and may be additionally bound to a specific context or origin name.<a href="#section-1.1-4.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.1-4.3">Token redemption: An action by which a client presents a token to an origin,
+          <li class="normal" id="section-1.1-4.3">Token redemption: An action by which a client presents a token to an origin in an HTTP request,
 using the "Authorization" HTTP header field.<a href="#section-1.1-4.3" class="pilcrow">¶</a>
 </li>
         </ul>
@@ -1287,6 +1293,11 @@ the scheme "PrivateToken". Origins challenge clients to present a token
 from a specific issuer (<a href="#challenge" class="auto internal xref">Section 2.1</a>). Once a client has received a token
 from that issuer, or already has a valid token available, it presents the
 token to the origin (<a href="#redemption" class="auto internal xref">Section 2.2</a>).<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Unlike many authentication schemes in which a client will present the same credentials
+across multiple requests, tokens used with the "PrivateToken" scheme are
+single-use credentials, and are not reused. Spending the same token value more than once allows the origin to link multiple transactions to the same client. In deployment scenarios
+where origins send token challenges to request tokens, origins ought to expect at most one
+request containing a token from the client in reaction to a particular challenge.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="challenge">
 <section id="section-2.1">
         <h3 id="name-token-challenge">
@@ -1697,6 +1708,8 @@ possible value is 0xFFFF = 65535.<a href="#section-5.2-1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-5.2-3.8">Reference: Where this algorithm is defined<a href="#section-5.2-3.8" class="pilcrow">¶</a>
 </li>
+          <li class="normal" id="section-5.2-3.9">Notes: Any notes associated with the entry<a href="#section-5.2-3.9" class="pilcrow">¶</a>
+</li>
         </ul>
 <p id="section-5.2-4">New entries in this registry are subject to the Specification Required registration policy
 (<span>[<a href="#RFC8126" class="cite xref">RFC8126</a>], <a href="https://rfc-editor.org/rfc/rfc8126#section-4.6" class="relref">Section 4.6</a></span>). Designated experts need to ensure that the token type
@@ -1734,6 +1747,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <th class="text-left" rowspan="1" colspan="1">Nk</th>
               <th class="text-left" rowspan="1" colspan="1">Nid</th>
               <th class="text-left" rowspan="1" colspan="1">Reference</th>
+              <th class="text-left" rowspan="1" colspan="1">Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -1746,6 +1760,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x02AA</td>
@@ -1756,6 +1771,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x1132</td>
@@ -1766,6 +1782,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x2E96</td>
@@ -1776,6 +1793,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x3CD3</td>
@@ -1786,6 +1804,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x4473</td>
@@ -1796,6 +1815,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x5A63</td>
@@ -1806,6 +1826,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x6D32</td>
@@ -1816,6 +1837,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x7F3F</td>
@@ -1826,6 +1848,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x8D07</td>
@@ -1836,6 +1859,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0x916B</td>
@@ -1846,6 +1870,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xA6A4</td>
@@ -1856,6 +1881,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xBEAB</td>
@@ -1866,6 +1892,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xC3F3</td>
@@ -1876,6 +1903,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xDA42</td>
@@ -1886,6 +1914,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xE944</td>
@@ -1896,6 +1925,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xF057</td>
@@ -1906,6 +1936,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">0xFF00-0xFFFF</td>
@@ -1916,6 +1947,7 @@ structure SHOULD be filled with random bytes when using greased values.<a href="
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">N/A</td>
               <td class="text-left" rowspan="1" colspan="1">This document</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
             </tr>
           </tbody>
         </table>

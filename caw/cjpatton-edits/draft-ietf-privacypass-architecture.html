@@ -1276,16 +1276,16 @@ the figure below.<a href="#section-1-4" class="pilcrow">¶</a></p>
         <div class="alignLeft art-text artwork" id="section-1-5.1">
 <pre>
       Origin          Client        Attester          Issuer
-  /--------------------------------------------------------------------
-  |                 /-----------------------------------------\
-  |   Challenge ----&gt; Attest ---&gt;                             |
-  |                 | TokenRequest ---------------&gt;           |
-  |   Redemption    |                              (validate) | Issuance
-  |      Flow       |                              (evaluate) |   Flow
-  |                 |     &lt;-------------------  TokenResponse |
-  |   &lt;--- Response |                                         |
-  |                 \-----------------------------------------/
-  \--------------------------------------------------------------------
+  /---------------------------------------------------------------------
+  |                  /-----------------------------------------\
+  | TokenChallenge --&gt; Attest ---&gt;                             |
+  |                  | TokenRequest ---------------&gt;           |
+  |   Redemption     |                              (validate) | Issuance
+  |      Flow        |                              (evaluate) |   Flow
+  |                  |     &lt;-------------------  TokenResponse |
+  |     &lt;---- Token  |                                         |
+  |                  \-----------------------------------------/
+  \---------------------------------------------------------------------
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
