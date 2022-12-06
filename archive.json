@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-04T01:16:44.674083+00:00",
+  "timestamp": "2022-12-06T01:14:26.766749+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -2467,15 +2467,15 @@
       "id": "I_kwDODeTEy85R-j1l",
       "title": "Arch: joint Attester and Origin",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/189",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nikitaborisov",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "This seems to me like a useful deployment option in cases where the Origin performs its own account management but wants to have it be unlinkable from account use. Consider, e.g., a newspaper that is subscription only, where the newspaper wants to make sure that only subscribers access articles, but it does not want to be able to track which subscribers read which articles. \r\n\r\nThis is different significantly the joint Origin, Issuer, and Attester since you _can_ use authentication methods that utilize the client's identity. I'm not sure if this is a lot different from the case where all three of Attester, Origin, Issuer are distinct from a security perspective, except that obviously a joint Attester and Origin cannot be assumed to not collude with each other. ",
       "createdAt": "2022-09-16T03:29:43Z",
-      "updatedAt": "2022-09-16T12:20:17Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T20:20:51Z",
+      "closedAt": "2022-12-05T20:20:51Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -2483,6 +2483,13 @@
           "body": "In this example, why would the joint Attester and Origin outsource token issuance to a third party? This seems like a use case for the shared Attester, Issuer, and Origin model to me. Thoughts?",
           "createdAt": "2022-09-16T12:20:17Z",
           "updatedAt": "2022-09-16T12:20:17Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing based on the above. We can re-open and add this model if more people think it'd be useful.",
+          "createdAt": "2022-12-05T20:20:51Z",
+          "updatedAt": "2022-12-05T20:20:51Z"
         }
       ]
     },
@@ -2817,7 +2824,7 @@
       "id": "I_kwDODeTEy85XdogI",
       "title": "Proto: why are you shouting?",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/225",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2826,8 +2833,8 @@
       ],
       "body": "> This document DOES NOT cover the architectural framework required for running and maintaining the Privacy Pass protocol in the Internet setting. In addition, it DOES NOT cover the choices that are necessary for ensuring that client privacy leaks do not occur. Both of these considerations are covered in [[I-D.ietf-privacypass-architecture](https://www.ietf.org/archive/id/draft-ietf-privacypass-protocol-06.html#I-D.ietf-privacypass-architecture)].\r\n\r\nIs there a more polite way to phrase this disclaimer?",
       "createdAt": "2022-11-29T03:19:03Z",
-      "updatedAt": "2022-12-01T13:17:09Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:07:45Z",
+      "closedAt": "2022-12-05T17:07:45Z",
       "comments": [
         {
           "author": "dvorak42",
@@ -2857,7 +2864,7 @@
       "id": "I_kwDODeTEy85XdpSi",
       "title": "Proto: is the Internet important?",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/226",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2866,8 +2873,8 @@
       ],
       "body": "There are two cases where the term `Internet` seems to be used with importance.\r\n\r\n> This document DOES NOT cover the architectural framework required for running and maintaining the Privacy Pass protocol in the Internet setting.\r\n\r\n> Client: An entity that provides authorization tokens to services across the Internet, in return for authorization.\r\n\r\nI suspect that the Internet isn't actually that important in the context / scope of this protocol document, especially since the architecture document doesn't mention it.",
       "createdAt": "2022-11-29T03:24:11Z",
-      "updatedAt": "2022-12-02T15:34:05Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:07:46Z",
+      "closedAt": "2022-12-05T17:07:46Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -2883,7 +2890,7 @@
       "id": "I_kwDODeTEy85XdqM1",
       "title": "Proto: why make assumptions in terminology?",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/227",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2892,8 +2899,8 @@
       ],
       "body": "> We assume that all protocol messages are encoded into raw byte format before being sent across the wire.\r\n\r\nThis is probably just a nitpick but I don't understand what you're assuming here. If the messages **are** encoded as raw byte format, isn't that really what the document is all about? Maybe what you want to be saying is more like whats in the [auth scheme doc terminology section](https://www.ietf.org/archive/id/draft-ietf-privacypass-auth-scheme-06.html#section-1.1-2)?\r\n\r\n> Unless otherwise specified, this document encodes protocol messages in TLS notation from [[TLS13](https://www.ietf.org/archive/id/draft-ietf-privacypass-auth-scheme-06.html#TLS13)], Section 3.",
       "createdAt": "2022-11-29T03:30:25Z",
-      "updatedAt": "2022-11-30T18:17:02Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:07:55Z",
+      "closedAt": "2022-12-05T17:07:55Z",
       "comments": []
     },
     {
@@ -2927,7 +2934,7 @@
       "id": "I_kwDODeTEy85XdsD-",
       "title": "Proto: what URI or URL specs are you depending on, and what is the scope of allowed URI contents",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/229",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2936,8 +2943,8 @@
       ],
       "body": "Issuers MUST provide a configuration `Issuer Request URI` , so what spec should they be referring to in order to ensure that this URI is well formed? I started wondering about how percent-encoding might apply, and that got me on to thinking whether you really want to support something like\r\n\r\n`\"issuer-request-uri\": \"https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top\",",
       "createdAt": "2022-11-29T03:43:54Z",
-      "updatedAt": "2022-12-02T15:38:45Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:13:57Z",
+      "closedAt": "2022-12-05T17:13:57Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -2953,7 +2960,7 @@
       "id": "I_kwDODeTEy85XduAi",
       "title": "Proto: JSON is a missing normative dependency",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/230",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2962,8 +2969,8 @@
       ],
       "body": "The configuration section lists several requirements that depend on JSON, but a JSON specification is not given.  I'm guessing you probably want https://www.rfc-editor.org/rfc/rfc8259.html.",
       "createdAt": "2022-11-29T03:58:37Z",
-      "updatedAt": "2022-11-30T18:17:03Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:13:57Z",
+      "closedAt": "2022-12-05T17:13:57Z",
       "comments": []
     },
     {
@@ -2971,7 +2978,7 @@
       "id": "I_kwDODeTEy85XdvJv",
       "title": "Proto: Token Type",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/231",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2980,8 +2987,8 @@
       ],
       "body": "table 2 says:\r\n\r\n> \r\n\r\ntoken-type | Integer value of the Token Type, as defined in Section 8.1, as a JSON number\r\n-- | --\r\n\r\nand Section 8.1 says:\r\n\r\n> This document updates the \"Token Type\" Registry with the following values.\r\n\r\nWhat is the Token Type registry and what are the constraints on values in the registry? It's implied that values should be integers but JSON numbers are quite flexible, so would it be valid for me to register e.g. a negative integer. If the \"Token Type\" registry already exists, I'm not able to find it and a link would be useful. If it doesn't exist and this document wishes to create it, then more work is needed to establish that registry and it's procedures.",
       "createdAt": "2022-11-29T04:04:34Z",
-      "updatedAt": "2022-12-02T15:46:42Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:17:47Z",
+      "closedAt": "2022-12-05T17:17:47Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -2997,7 +3004,7 @@
       "id": "I_kwDODeTEy85Xdvt3",
       "title": "Proto: well-known",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/232",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -3006,8 +3013,8 @@
       ],
       "body": "> Issuer directory resources have the media type \"application/json\" and are located at the well-known location /.well-known/token-issuer-directory.\r\n\r\nyou're probably missing a registration for your well-known in the IANA considerations, the registry is https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml",
       "createdAt": "2022-11-29T04:07:02Z",
-      "updatedAt": "2022-11-30T18:17:04Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:09:36Z",
+      "closedAt": "2022-12-05T17:09:36Z",
       "comments": []
     },
     {
@@ -3015,7 +3022,7 @@
       "id": "I_kwDODeTEy85Xdw0V",
       "title": "Proto: two refernece to Privacy Pass HTTP authentication scheme",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/233",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -3024,8 +3031,8 @@
       ],
       "body": "There's `[AUTHSCHEME]` and `[HTTP-Authentication]`. I'm guessing these should be collapsed to just one.",
       "createdAt": "2022-11-29T04:11:33Z",
-      "updatedAt": "2022-11-30T18:17:04Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:17:48Z",
+      "closedAt": "2022-12-05T17:17:48Z",
       "comments": []
     },
     {
@@ -3085,7 +3092,7 @@
       "id": "I_kwDODeTEy85Xd0QQ",
       "title": "Proto: use of HTTP is uncited",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/236",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -3094,8 +3101,8 @@
       ],
       "body": "The Issuance protocol depends on HTTP, so I'd expect this to be cited. Then we get into the HTTP terminology alignment game. For example, where the document says something like \r\n\r\n> The Client then generates an HTTP POST request to send to the Issuer, with the TokenRequest as the body.\r\n\r\n`body` should be substituted for `content` as per https://www.rfc-editor.org/rfc/rfc9110.html#name-messages",
       "createdAt": "2022-11-29T04:29:02Z",
-      "updatedAt": "2022-11-30T18:17:07Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:13:13Z",
+      "closedAt": "2022-12-05T17:13:13Z",
       "comments": []
     },
     {
@@ -3220,7 +3227,7 @@
       "id": "I_kwDODeTEy85Xjn90",
       "title": "Auth: illustration in the introduction",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/240",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mnot",
       "authorAssociation": "NONE",
       "assignees": [
@@ -3232,8 +3239,8 @@
       ],
       "body": "What is this illustration trying to convey? I found it confusing.",
       "createdAt": "2022-11-30T02:28:38Z",
-      "updatedAt": "2022-11-30T18:19:20Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:05:06Z",
+      "closedAt": "2022-12-05T17:05:06Z",
       "comments": []
     },
     {
@@ -3314,7 +3321,7 @@
       "id": "I_kwDODeTEy85XjsD7",
       "title": "Auth: When to use?",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/244",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mnot",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -3323,8 +3330,8 @@
       ],
       "body": "If a server wants to use this auth scheme but the client doesn't support it, what's supposed to happen?\r\n\r\nDo you have a way for the server to discover that the client does support it?",
       "createdAt": "2022-11-30T02:57:25Z",
-      "updatedAt": "2022-11-30T22:57:36Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T17:23:59Z",
+      "closedAt": "2022-12-05T17:23:59Z",
       "comments": [
         {
           "author": "tfpauly",
@@ -3382,31 +3389,39 @@
       "id": "I_kwDODeTEy85X056G",
       "title": "Chris P.: WGLC: editorial",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/260",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cjpatton",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "- [ ] Overall: The document is inconsistent about capitalization after colon (\":\").\r\n- [ ] Abstract: I'm not sure the distinction between public/private verifiability is common knowledge. It might be helpful to say plainly who is doing the verifying. E.g.: \"one [variant] providing tokens whose validity can be verified by the issuer only; and another for which token validity can be verified by any party with the issuer public key.\"\r\n- [ ] 2 Terminology: \"We assume that all protocol messages are encoded into raw byte formatt  before being sent across the wire\" This doesn't need to be mentioned, in my opinion.\r\n- [ ] 5.1 Client-To-Issuer Request: The psedocode for computing \"client_context\" hard-codes a particular OPRF suite (0x0004). Is this the only suite that is permitted/recommended by the document? I don't think this is clear until the token types are defined in Section 8.1.\r\n- [ ] 5.3 Finalization: Constants hardcoded instructs don't a semi-colon after the constant. (See \"Token\" in this section, for example.) Is this intentional? It looks a bit odd, and I'm wondering if this is \"syntactically\" correct.\r\n- [ ] 5.4 Token Verification: I think it's worth pointing out here that creating the server context requires the Issuer Private Key, which is why VOPRF is not publicly verifiable.\r\n- [ ] 7 Security Considerations: \"All security considerations described in the VOPRF document also apply in the Privacy Pass use-case.\" What about security considerations for BLINDRSA? It might be a bit cleaner to write something like this: \"Each protocol described here inherits the security considerations of its base document: For Section 5, this is [VOPRF]; ... \"\r\n- [ ] Acknowledgements: Sofi is acknowledged, but is also a co-author.\r\n",
       "createdAt": "2022-12-02T21:48:44Z",
-      "updatedAt": "2022-12-02T21:48:44Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2022-12-05T20:20:22Z",
+      "closedAt": "2022-12-05T20:20:22Z",
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [ ]  Overall: The document is inconsistent about capitalization after colon (\":\").\r\n\r\nI think I caught all of these. Addressed in #266.\r\n\r\n> * [ ]  Abstract: I'm not sure the distinction between public/private verifiability is common knowledge. It might be helpful to say plainly who is doing the verifying. E.g.: \"one [variant] providing tokens whose validity can be verified by the issuer only; and another for which token validity can be verified by any party with the issuer public key.\"\r\n\r\nYes, this is much better! Addressed in #266.\r\n\r\n> * [X]  2 Terminology: \"We assume that all protocol messages are encoded into raw byte formatt  before being sent across the wire\" This doesn't need to be mentioned, in my opinion.\r\n\r\nThis is addressed by #260.\r\n\r\n> * [ ]  5.1 Client-To-Issuer Request: The psedocode for computing \"client_context\" hard-codes a particular OPRF suite (0x0004). Is this the only suite that is permitted/recommended by the document? I don't think this is clear until the token types are defined in Section 8.1.\r\n\r\nWe explain the constant in the sentence immediately following the pseudocode, so I don't think further clarification is needed.\r\n\r\n> * [X]  5.3 Finalization: Constants hardcoded instructs don't a semi-colon after the constant. (See \"Token\" in this section, for example.) Is this intentional? It looks a bit odd, and I'm wondering if this is \"syntactically\" correct.\r\n\r\nThe semi-colon was missing, but we updated this to match what's done in RFC8446. Addressed in #266.\r\n\r\n> * [X]  5.4 Token Verification: I think it's worth pointing out here that creating the server context requires the Issuer Private Key, which is why VOPRF is not publicly verifiable.\r\n\r\nAddressed in #266.\r\n\r\n> * [ ]  7 Security Considerations: \"All security considerations described in the VOPRF document also apply in the Privacy Pass use-case.\" What about security considerations for BLINDRSA? It might be a bit cleaner to write something like this: \"Each protocol described here inherits the security considerations of its base document: For Section 5, this is [VOPRF]; ... \"\r\n\r\nGood catch. This has already been fixed on the editor's branch to say \"All security considerations described in the VOPRF and blind RSA documents also apply in the Privacy Pass use-case.\"\r\n",
+          "createdAt": "2022-12-05T15:59:41Z",
+          "updatedAt": "2022-12-05T15:59:41Z"
+        }
+      ]
     },
     {
       "number": 261,
       "id": "I_kwDODeTEy85X1B6y",
       "title": "Chris P.: WGLC: What is the byte order of hex constants?",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/261",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cjpatton",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Hexadecimal constants are used as strings without specifying the length or byte order. For example, \"0x0001\" might be interpreted in a couple of ways. Usually the correct interpretation is clear in context, but I'm not sure it always is.\r\n",
       "createdAt": "2022-12-02T22:10:30Z",
-      "updatedAt": "2022-12-02T22:30:55Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T20:20:21Z",
+      "closedAt": "2022-12-05T20:20:21Z",
       "comments": []
     },
     {
@@ -3414,15 +3429,15 @@
       "id": "I_kwDODeTEy85X3Euz",
       "title": "Proto: Remove mention of public metadata",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/262",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "From @cjpatton:\r\n\r\n> In the abstract you mention that: \"The privately verifiable issuance protocol optionally supports public metadata during the \r\nissuance flow.\" Where does this metadata come up in the protocol? As far as I can tell, the two protocols look functionally equivalent modulo who can verify. Perhaps you removed metadata at some point? In particular, double check that the following claim in Section 6 is accurate: \"The issuance protocol does not admit public or private metadata to bind additional context to tokens.\"\r\n",
       "createdAt": "2022-12-03T14:12:45Z",
-      "updatedAt": "2022-12-03T14:12:45Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T20:18:48Z",
+      "closedAt": "2022-12-05T20:18:48Z",
       "comments": []
     },
     {
@@ -3430,15 +3445,15 @@
       "id": "I_kwDODeTEy85X3EyP",
       "title": "Proto: Cite RSA-Verify",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/263",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "From @cjpatton:\r\n\r\n> Section 6.4: \"The function RSA-Verify(msg, pk, sig) is a procedure to verify a signature \u2026 Its implementation is not specified in this document.\". Is it specified somewhere, perhaps [BLINDRSA]? A reference would be useful, in my opinion.\r\n",
       "createdAt": "2022-12-03T14:13:02Z",
-      "updatedAt": "2022-12-03T14:13:51Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-05T20:19:05Z",
+      "closedAt": "2022-12-05T20:19:05Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -12767,7 +12782,7 @@
       ],
       "body": "Closes #209",
       "createdAt": "2022-10-28T15:09:54Z",
-      "updatedAt": "2022-11-03T16:25:26Z",
+      "updatedAt": "2022-12-05T17:02:59Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "ccf6f2e58425b688e583f91a45869fc3eb177020",
@@ -12843,6 +12858,34 @@
           "body": "Approved and taking my concerns to this [lovely new draft](https://github.com/httpwg/http-extensions/issues/2280)!",
           "createdAt": "2022-10-31T19:58:09Z",
           "updatedAt": "2022-10-31T19:58:09Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "body": "> To be concrete, why can't we simply say that clients MUST use auth-params when encoding auth-params to the server? And similarly for parameters from server to client? @reschke, thoughts?\r\n\r\nNot sure I understand the question. The syntax for the authentication fields is defined in RFC 9110. You really can't change it (while conforming to that spec). All you get to do is naming the scheme and the auth-param names.",
+          "createdAt": "2022-12-05T16:52:31Z",
+          "updatedAt": "2022-12-05T16:52:31Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "My objection is to the syntax in RFC 9110 itself. It's unhelpfully flexible. But I've settled with addressing that syntax elsewhere.",
+          "createdAt": "2022-12-05T16:53:46Z",
+          "updatedAt": "2022-12-05T16:54:07Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "NONE",
+          "body": "> My objection is to the syntax in RFC 9110 itself.\r\n\r\nThen your objection is ~25 years late :-).",
+          "createdAt": "2022-12-05T16:57:52Z",
+          "updatedAt": "2022-12-05T16:57:52Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Heh, I'm aware! :) ",
+          "createdAt": "2022-12-05T17:02:58Z",
+          "updatedAt": "2022-12-05T17:02:58Z"
         }
       ],
       "reviews": [
@@ -13639,24 +13682,26 @@
       "id": "PR_kwDODeTEy85EJuqs",
       "title": "DO NOT SHOUT",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/249",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #225\r\nCloses #226",
       "createdAt": "2022-12-02T15:31:29Z",
-      "updatedAt": "2022-12-02T18:35:59Z",
+      "updatedAt": "2022-12-05T17:07:45Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "b0af5646efbb431cf96fb46e880f6381559bb16e",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/do-not-shout",
       "headRefOid": "f35c693a134cce4431ad99a615e6eedf4588a22c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-05T17:07:44Z",
+      "mergedAt": "2022-12-05T17:07:44Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "0ab7dec974df7283e2ef844c8804d58744c528b9"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13699,24 +13744,26 @@
       "id": "PR_kwDODeTEy85EJv_F",
       "title": "State assumption about message encoding more clearly",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/250",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #227",
       "createdAt": "2022-12-02T15:36:29Z",
-      "updatedAt": "2022-12-02T16:27:49Z",
+      "updatedAt": "2022-12-05T17:07:54Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "b0af5646efbb431cf96fb46e880f6381559bb16e",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/meaningful-assumption",
       "headRefOid": "e130e8f859135a2b09c5051df55a31e10f3b365d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-05T17:07:54Z",
+      "mergedAt": "2022-12-05T17:07:54Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "70d776ea9d158a0cab0be397a7435cdb50ea105b"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13739,24 +13786,26 @@
       "id": "PR_kwDODeTEy85EJy6r",
       "title": "Add configuration dictionary encoding information",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/251",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #229\r\nCloses #230",
       "createdAt": "2022-12-02T15:45:32Z",
-      "updatedAt": "2022-12-02T16:28:39Z",
+      "updatedAt": "2022-12-05T17:13:53Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "d7dc96348aa70de2b58d2bb3cb78f254233ea038",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/encoding-details",
       "headRefOid": "09682c9e989b050da861c0d254df5e41cb62eb6f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-05T17:13:53Z",
+      "mergedAt": "2022-12-05T17:13:53Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "8dc67188d69dcf57de2084f35bdcb3d91f7d45b8"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13779,24 +13828,26 @@
       "id": "PR_kwDODeTEy85EJzoe",
       "title": "Clean up auth-scheme usage and references",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/252",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #231\r\nCloses #233",
       "createdAt": "2022-12-02T15:47:32Z",
-      "updatedAt": "2022-12-02T18:56:23Z",
+      "updatedAt": "2022-12-05T17:17:47Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
-      "baseRefOid": "d7dc96348aa70de2b58d2bb3cb78f254233ea038",
+      "baseRefOid": "8dc67188d69dcf57de2084f35bdcb3d91f7d45b8",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/cite-registry",
-      "headRefOid": "984c5775f54eeab424c91a7ec16373af0c41306e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "d3aaf30c27a1f40cef38b3393ef450254e9e16ea",
+      "closedAt": "2022-12-05T17:17:46Z",
+      "mergedAt": "2022-12-05T17:17:46Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "00948b91f31038f1ddcbd6d3f3612e1e43c8efd0"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13879,24 +13930,26 @@
       "id": "PR_kwDODeTEy85EJ1Z9",
       "title": "Register the well-known URI",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/253",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #232 \r\n\r\nWhile we're here, I'd like to recommend we align the name of this well-known value to align with the request/response names. In particular, what do folks think about \"/well-known/private-token-issuer-directory\"?",
       "createdAt": "2022-12-02T15:54:05Z",
-      "updatedAt": "2022-12-02T18:53:04Z",
+      "updatedAt": "2022-12-05T17:09:35Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
-      "baseRefOid": "d7dc96348aa70de2b58d2bb3cb78f254233ea038",
+      "baseRefOid": "70d776ea9d158a0cab0be397a7435cdb50ea105b",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/register-wk-uri",
-      "headRefOid": "e11e49e847bc3a24a20e5b0fa7d683ba6603716f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "295ce5fc330774f98d90a1424dca48ae9bfcff7e",
+      "closedAt": "2022-12-05T17:09:35Z",
+      "mergedAt": "2022-12-05T17:09:35Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "08b4d515adfb8337cf04e92cae5f5565f6ca7c4a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13919,24 +13972,26 @@
       "id": "PR_kwDODeTEy85EJ4ut",
       "title": "Cite HTTP and use it correctly (for message content)",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/254",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #236\r\n\r\n... I think. I'm double checking to see if there is any other improper HTTP usage.",
       "createdAt": "2022-12-02T16:04:04Z",
-      "updatedAt": "2022-12-02T18:53:47Z",
+      "updatedAt": "2022-12-05T17:13:12Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "6a4486001ba943c747ac9c5387c5868e22517867",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/proper-http",
       "headRefOid": "be8d1ddd601923ef06c05294f8aa75ee3d83aeed",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-05T17:13:12Z",
+      "mergedAt": "2022-12-05T17:13:12Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "893eb052c157f21b3dc643ff20cbdbce32f1a09f"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13959,24 +14014,26 @@
       "id": "PR_kwDODeTEy85EJ7fP",
       "title": "No need to be strict with VOPRF key generation",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/255",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This seemed too restrictive, so I relaxed it.",
       "createdAt": "2022-12-02T16:12:02Z",
-      "updatedAt": "2022-12-02T18:54:03Z",
+      "updatedAt": "2022-12-05T17:09:51Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "6a4486001ba943c747ac9c5387c5868e22517867",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/relax-key-gen",
       "headRefOid": "da04139cbc13cd2b0e6ef80408cebab4712f9e01",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-05T17:09:51Z",
+      "mergedAt": "2022-12-05T17:09:51Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "642f9435488906817561638dad17977e753db93c"
+      },
       "comments": [],
       "reviews": [
         {
@@ -13999,24 +14056,26 @@
       "id": "PR_kwDODeTEy85EJ81s",
       "title": "Add notes field to the token type registry",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/256",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "We need a field to list some extra information about the blind RSA variants. Additional PR incoming for that change.",
       "createdAt": "2022-12-02T16:16:30Z",
-      "updatedAt": "2022-12-02T18:54:23Z",
+      "updatedAt": "2022-12-05T17:10:26Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "6a4486001ba943c747ac9c5387c5868e22517867",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/add-notes-to-registry",
       "headRefOid": "797c522832b0eddde2b9f40bf0f7f7bd78666325",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-12-05T17:10:26Z",
+      "mergedAt": "2022-12-05T17:10:26Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "ad15fb7168c051bb3977bbd72eb4203db48e8842"
+      },
       "comments": [],
       "reviews": [
         {
@@ -14039,24 +14098,26 @@
       "id": "PR_kwDODeTEy85EJ9VH",
       "title": "Add blind RSA variants to the registry",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/257",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Builds on #256 -- merge that first.\r\n\r\nWe might consider using a list to describe the registry contents, rather than a table, now that it has so many entries. @tfpauly, thoughts?",
       "createdAt": "2022-12-02T16:18:25Z",
-      "updatedAt": "2022-12-03T14:11:51Z",
+      "updatedAt": "2022-12-05T17:20:21Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
-      "baseRefOid": "6a4486001ba943c747ac9c5387c5868e22517867",
+      "baseRefOid": "00948b91f31038f1ddcbd6d3f3612e1e43c8efd0",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/clarify-rsa-variants",
-      "headRefOid": "e795b20409cc5428b9ab6e6ee72f77a9628e30f7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "23bc27e2d4a3b41c41b376fde163b8397405d063",
+      "closedAt": "2022-12-05T17:20:21Z",
+      "mergedAt": "2022-12-05T17:20:21Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "a960318d3bc76870deed153d92a512932701f4dd"
+      },
       "comments": [
         {
           "author": "tfpauly",
@@ -14094,33 +14155,89 @@
       "id": "PR_kwDODeTEy85EKAQR",
       "title": "Improve the challenge/response pictures",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/258",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #240",
       "createdAt": "2022-12-02T16:29:52Z",
-      "updatedAt": "2022-12-02T16:29:52Z",
+      "updatedAt": "2022-12-05T17:05:04Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "6a4486001ba943c747ac9c5387c5868e22517867",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "caw/improve-picture",
-      "headRefOid": "e2212e21dd61e24d5932bc20f680734b914e61de",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "3402d5eba417519ed9b99b5cd104a237d647620c",
+      "closedAt": "2022-12-05T17:05:04Z",
+      "mergedAt": "2022-12-05T17:05:04Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "023302ba97f2db2f69a6b1ae108d1bb2c7b763c8"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85Hzo2f",
+          "commit": {
+            "abbreviatedOid": "e2212e2"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-05T15:05:50Z",
+          "updatedAt": "2022-12-05T15:05:50Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\nheader field). Clients then respond to that challenge with an HTTP authentiation response\r\n```",
+              "createdAt": "2022-12-05T15:05:50Z",
+              "updatedAt": "2022-12-05T15:05:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85HzpDp",
+          "commit": {
+            "abbreviatedOid": "47e33c2"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-05T15:06:17Z",
+          "updatedAt": "2022-12-05T15:06:17Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nbased on the origin's token challenge by running the token issuance protocol {{?ISSUANCE=I-D.ietf-privacypass-protocol}}.\r\n```",
+              "createdAt": "2022-12-05T15:06:17Z",
+              "updatedAt": "2022-12-05T15:06:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDODeTEy85H0cdj",
+          "commit": {
+            "abbreviatedOid": "3402d5e"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-05T17:04:55Z",
+          "updatedAt": "2022-12-05T17:04:55Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 259,
       "id": "PR_kwDODeTEy85EKoLY",
       "title": "Add example of 401 response that supports legacy clients",
       "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/259",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tfpauly",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -14129,18 +14246,35 @@
       ],
       "body": "Closes #244",
       "createdAt": "2022-12-02T19:06:12Z",
-      "updatedAt": "2022-12-02T19:35:15Z",
+      "updatedAt": "2022-12-05T17:23:58Z",
       "baseRepository": "ietf-wg-privacypass/base-drafts",
       "baseRefName": "main",
       "baseRefOid": "012b902e96a3e691e505c0e154bbd909fb695eaa",
       "headRepository": "ietf-wg-privacypass/base-drafts",
       "headRefName": "tfpauly-patch-16",
       "headRefOid": "77cb80aadd349be2d87967471c60a48d9e877e6f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2022-12-05T17:23:58Z",
+      "mergedAt": "2022-12-05T17:23:58Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "78f8b2fd194633f3f6518552b7448c9101ecb178"
+      },
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@dvorak42 can you give this a quick look and merge if you're OK with it?",
+          "createdAt": "2022-12-05T17:10:51Z",
+          "updatedAt": "2022-12-05T17:10:51Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'll just merge it and we can revise if needed",
+          "createdAt": "2022-12-05T17:23:53Z",
+          "updatedAt": "2022-12-05T17:23:53Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDODeTEy85Hs44g",
@@ -14173,6 +14307,145 @@
           "body": "",
           "createdAt": "2022-12-02T19:07:43Z",
           "updatedAt": "2022-12-02T19:07:43Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 264,
+      "id": "PR_kwDODeTEy85EWzxk",
+      "title": "Remove public metadata mention",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/264",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #262",
+      "createdAt": "2022-12-05T15:21:50Z",
+      "updatedAt": "2022-12-05T20:18:47Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "012b902e96a3e691e505c0e154bbd909fb695eaa",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/remove-metadata-mention",
+      "headRefOid": "633da247ec8362eba65e1ba3e5d863ee45296ca4",
+      "closedAt": "2022-12-05T20:18:47Z",
+      "mergedAt": "2022-12-05T20:18:47Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "af55a5b0ff21d4ddb96d9347bdf83111b73e7365"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85H0j7L",
+          "commit": {
+            "abbreviatedOid": "633da24"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-05T17:24:49Z",
+          "updatedAt": "2022-12-05T17:24:49Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 265,
+      "id": "PR_kwDODeTEy85EW055",
+      "title": "Make RSA signature verification explicit",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/265",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #263",
+      "createdAt": "2022-12-05T15:24:34Z",
+      "updatedAt": "2022-12-05T20:19:05Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "012b902e96a3e691e505c0e154bbd909fb695eaa",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/explicit-verify",
+      "headRefOid": "1743219da45f1777a3fd3011f080607735e666ac",
+      "closedAt": "2022-12-05T20:19:04Z",
+      "mergedAt": "2022-12-05T20:19:04Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "a16f4a847da224f39b8213ea882eb484fe3d4136"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85H0kC1",
+          "commit": {
+            "abbreviatedOid": "1743219"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-05T17:25:11Z",
+          "updatedAt": "2022-12-05T17:25:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 266,
+      "id": "PR_kwDODeTEy85EW_Mv",
+      "title": "Apply cjpatton editorial suggestions",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/pull/266",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #261\r\nCloses #260 \r\n",
+      "createdAt": "2022-12-05T15:49:57Z",
+      "updatedAt": "2022-12-05T20:20:21Z",
+      "baseRepository": "ietf-wg-privacypass/base-drafts",
+      "baseRefName": "main",
+      "baseRefOid": "a16f4a847da224f39b8213ea882eb484fe3d4136",
+      "headRepository": "ietf-wg-privacypass/base-drafts",
+      "headRefName": "caw/cjpatton-edits",
+      "headRefOid": "8adad37e6990b04329077997921ea64535f86a0a",
+      "closedAt": "2022-12-05T20:20:20Z",
+      "mergedAt": "2022-12-05T20:20:20Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "67c44e7ac570eebcd58807d92190a19d1f9c8a0f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDODeTEy85H0KqI",
+          "commit": {
+            "abbreviatedOid": "834e7c5"
+          },
+          "author": "cjpatton",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-05T16:21:26Z",
+          "updatedAt": "2022-12-05T16:21:26Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDODeTEy85H0kiU",
+          "commit": {
+            "abbreviatedOid": "4b162fc"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-05T17:26:34Z",
+          "updatedAt": "2022-12-05T17:26:34Z",
           "comments": []
         }
       ]
