@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-06T01:14:26.766749+00:00",
+  "timestamp": "2022-12-11T01:23:25.920257+00:00",
   "repo": "ietf-wg-privacypass/base-drafts",
   "labels": [
     {
@@ -3461,6 +3461,41 @@
           "body": "This should probably just invoke `RSASSA-PSS-VERIFY` from RFC8017 directly, since the named variants we allow for this token type must use PSS.",
           "createdAt": "2022-12-03T14:13:51Z",
           "updatedAt": "2022-12-03T14:13:51Z"
+        }
+      ]
+    },
+    {
+      "number": 267,
+      "id": "I_kwDODeTEy85YqrIR",
+      "title": "Protocol document should explain (optional) attester behavior",
+      "url": "https://github.com/ietf-wg-privacypass/base-drafts/issues/267",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [
+        "protocol"
+      ],
+      "body": "Split attesters and issuers are not required for the basic issuance protocol, but we should explain (in a sentence or so) that if you are using a split attester, the client sends the request to the attester, and the attester forwards the request to the issuer if it accepts the client.",
+      "createdAt": "2022-12-09T22:51:55Z",
+      "updatedAt": "2022-12-10T14:09:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "donivatamazondotcom",
+          "authorAssociation": "NONE",
+          "body": "For better clarity and consistency, I recommend adding a sequence diagram depicting this model considering the sequence diagrams that outline other models.",
+          "createdAt": "2022-12-10T00:27:41Z",
+          "updatedAt": "2022-12-10T00:27:41Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Agreed. This would be a good thing to include. I'll take this and add it.",
+          "createdAt": "2022-12-10T14:09:08Z",
+          "updatedAt": "2022-12-10T14:09:08Z"
         }
       ]
     }
